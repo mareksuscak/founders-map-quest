@@ -1,0 +1,61 @@
+{
+  "name": "founders-map-quest",
+  "version": "0.0.1",
+  "description": "Founders Map Quest sample solution for ScalaC assignment.",
+  "main": "src/js/app.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mareksuscak/founders-map-quest.git"
+  },
+  "author": "Marek Suscak <marek.suscak@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/mareksuscak/founders-map-quest/issues"
+  },
+  "homepage": "https://github.com/mareksuscak/founders-map-quest",
+  "dependencies": {
+    "flux": "^2.0.1",
+    "keymirror": "^0.1.1",
+    "object-assign": "^2.0.0",
+    "page": "^1.5.0",
+    "react": "^0.12.2"
+  },
+  "devDependencies": {
+    "autoprefixer-stylus": "^0.4.0",
+    "browser-sync": "^1.8.2",
+    "browserify": "^8.0.2",
+    "del": "^1.1.1",
+    "gulp": "^3.8.10",
+    "gulp-if": "^1.2.5",
+    "gulp-imagemin": "^2.1.0",
+    "gulp-jshint": "^1.9.0",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-notify": "^2.1.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-sourcemaps": "^1.3.0",
+    "gulp-stylus": "^1.3.4",
+    "gulp-uglify": "^1.0.2",
+    "gulp-util": "^3.0.1",
+    "jest-cli": "^0.2.1",
+    "jshint-stylish": "^1.0.0",
+    "reactify": "^0.17.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0",
+    "watchify": "^2.2.1",
+    "yargs": "^1.3.3"
+  },
+  "browserify": {
+    "transform": [
+      "reactify"
+    ]
+  },
+  "jest": {
+    "rootDir": "./src/scripts"
+  }
+}
