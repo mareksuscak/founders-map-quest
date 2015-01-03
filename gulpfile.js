@@ -75,7 +75,7 @@ gulp.task('compile:styles', function () {
     .pipe(plugins.stylus({
       compress: production,
       use: [
-          autoprefixer({ browsers: ['last 2 versions', 'ie 9'] })
+          autoprefixer({ browsers: ['last 2 versions'] })
       ],
       sourcemap: {
         inline: true,
