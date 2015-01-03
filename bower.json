@@ -1,0 +1,25 @@
+{
+  "name": "founders-map-quest",
+  "version": "0.0.1",
+  "homepage": "https://github.com/mareksuscak/founders-map-quest",
+  "authors": [
+    "Marek Suscak <marek.suscak@gmail.com>"
+  ],
+  "description": "Founders Map Quest sample solution for ScalaC assignment.",
+  "main": "src/js/app.js",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "dist/components/",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "font-awesome": "~4.2.0",
+    "leaflet": "~0.7.3",
+    "leaflet.markercluster": "~0.4.0"
+  }
+}

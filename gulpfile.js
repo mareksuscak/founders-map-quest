@@ -1,17 +1,17 @@
 'use strict';
 
-var autoprefixer = require('autoprefixer-stylus');
-var browserify   = require('browserify');
-var browserSync  = require('browser-sync');
-var del          = require('del');
-var gulp         = require('gulp');
-var plugins      = require('gulp-load-plugins')();
-var stylish      = require('jshint-stylish');
-var reactify     = require('reactify');
-var buffer       = require('vinyl-buffer');
-var source       = require('vinyl-source-stream');
-var watchify     = require('watchify');
-var argv         = require('yargs').argv;
+var autoprefixer = require('autoprefixer-stylus'),
+    browserify = require('browserify'),
+    browserSync = require('browser-sync'),
+    del = require('del'),
+    gulp = require('gulp'),
+    plugins = require('gulp-load-plugins')(),
+    stylish = require('jshint-stylish'),
+    reactify = require('reactify'),
+    buffer = require('vinyl-buffer'),
+    source = require('vinyl-source-stream'),
+    watchify = require('watchify'),
+    argv = require('yargs').argv;
 
 // gulp build --production or NODE_ENV=production gulp build
 var production = process.env.NODE_ENV === 'production' || !!argv.production;
@@ -39,29 +39,39 @@ gulp.task('clean', function(cb) {
   del(['dist/**'], cb);
 });
 
+// Bower Components
+gulp.task('bower', function() {
+  return plugins.bower()
+    .pipe(gulp.dest('dist/vendor'));
+});
+
 // Compile static assets
-gulp.task('compile:static', function() {
+gulp.task('compile:assets', function() {
   return gulp.src('src/*.{html,txt,ico}')
-      .pipe(gulp.dest('dist/'))
-      .pipe(browserSync.reload({stream: true}));
+    .pipe(gulp.dest('dist/'))
+    .pipe(browserSync.reload({stream: true}))
+    .pipe(plugins.notify('Assets compiled successfully.'));
 });
 
 // Optimize images
 gulp.task('optimize:images', function() {
   return gulp.src('src/images/**/*.{gif,jpg,png,svg}')
-      .pipe(plugins.imagemin({
-        progressive: true,
-        svgoPlugins: [{removeViewBox: false}],
-        // png optimization
-        optimizationLevel: production ? 3 : 1
-      }))
-      .pipe(gulp.dest('dist/images/'))
-      .pipe(browserSync.reload({stream: true}));
+    .pipe(plugins.imagemin({
+      progressive: true,
+      svgoPlugins: [{removeViewBox: false}],
+      // png optimization
+      optimizationLevel: production ? 3 : 1
+    }))
+    .pipe(gulp.dest('dist/images/'))
+    .pipe(browserSync.reload({stream: true}));
 });
 
 // Compile styl & auto-inject into browsers
 gulp.task('compile:styles', function () {
   return gulp.src('src/styles/main.styl')
+    // If there's a syntax error styles watcher stops
+    // so use plumber to prevent that behavior.
+    .pipe(plugins.plumber())
     .pipe(plugins.stylus({
       compress: production,
       use: [
@@ -82,13 +92,16 @@ gulp.task('compile:styles', function () {
 // Run linter for script files
 gulp.task('lint:scripts', function() {
   return gulp.src([
-        'gulpfile.js',
-        'src/scripts/**/*.js',
-      ])
-      .pipe(plugins.jshint())
-      .pipe(plugins.jshint.reporter(stylish))
-      .pipe(plugins.jshint.reporter('fail'))
-      .on('error', handleError('Script linting failed.'));
+      'gulpfile.js',
+      'src/scripts/**/*.js',
+      'src/scripts/**/*.jsx'
+    ])
+    .pipe(plugins.jshint())
+    .pipe(plugins.jshint.reporter(stylish))
+    .pipe(plugins.jshint.reporter('fail'))
+    .on('error', plugins.notify.onError(function () {
+        return 'Script linting failed.';
+    }));
 });
 
 // Setup browserify and watchify if requested
@@ -106,7 +119,9 @@ var scripts = function(watch) {
     bundler = watchify(bundler);
   }
 
-  bundler.transform(reactify);
+  // These are now defined in package.json
+  // bundler.transform(reactify);
+  // bundler.transform(browserifyShim);
 
   function rebundle() {
     return bundler.bundle()
@@ -124,24 +139,24 @@ var scripts = function(watch) {
 };
 
 // Compile js scripts
-gulp.task('compile:scripts', function () {
+gulp.task('compile:scripts', ['bower'], function () {
   return scripts(false);
 });
 
 // Watch js scripts
-gulp.task('watch:scripts', function() {
+gulp.task('watch:scripts', ['bower'], function() {
   return scripts(true);
 });
 
 // Watch js, styl AND static files, doing different things with each.
 gulp.task('watch', [
   'optimize:images',
-  'compile:static',
+  'compile:assets',
   'compile:styles',
   'watch:scripts'],
   function() {
     gulp.watch('src/styles/**/*.styl', ['compile:styles']);
-    gulp.watch('src/*.{html,txt,ico}', ['compile:static']);
+    gulp.watch('src/*.{html,txt,ico}', ['compile:assets']);
     gulp.watch('src/images/**/*.{gif,jpg,png,svg}', ['optimize:images']);
 });
 
@@ -158,7 +173,7 @@ gulp.task('serve', ['watch'], function() {
 // Build the application
 gulp.task('build', [
   'optimize:images',
-  'compile:static',
+  'compile:assets',
   'compile:styles',
   'compile:scripts'
 ]);

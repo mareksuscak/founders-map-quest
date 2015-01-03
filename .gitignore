@@ -51,3 +51,6 @@ node_modules
 
 # Dist directory
 dist
+
+# Vendor Directory - Bower Components
+vendor
