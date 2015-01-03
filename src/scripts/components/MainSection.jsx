@@ -2,7 +2,8 @@
 
 var React = require('react'),
     Header = require('./Header.jsx'), // jshint ignore:line
-    Filter = require('./Filter.jsx'); // jshint ignore:line
+    Filter = require('./Filter.jsx'), // jshint ignore:line
+    Loader = require('./Loader.jsx'); //jshint ignore:line
 
 var MainSection = React.createClass({
 
@@ -10,14 +11,15 @@ var MainSection = React.createClass({
     return (
       /*jshint ignore:start */
       <main className="main">
-          <Header/>
-          <div className="info">
-            <Filter/>
-          </div>
-          <div className="content">
+        <Header/>
+        <div className="info">
+          <Filter/>
+        </div>
 
-          </div>
-        </main>
+        <div className="content">
+
+        </div>
+      </main>
       /*jshint ignore:end */
     );
   }
