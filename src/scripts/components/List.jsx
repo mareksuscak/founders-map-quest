@@ -2,16 +2,16 @@
 
 var React = require('react');
 
-var App = React.createClass({
+var List = React.createClass({
   render: function() {
     return (
       /*jshint ignore:start */
-      <div className="app">
-        App
+      <div className="list">
+        List
       </div>
       /*jshint ignore:end */
     );
   }
 });
 
-module.exports = App;
+module.exports = List;
