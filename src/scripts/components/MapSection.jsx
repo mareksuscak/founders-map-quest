@@ -9,9 +9,34 @@ require('leaflet.markercluster');
 
 function getStateFromStores() {
   return {
-    founders: FounderStore.getAll(),
-    current: FounderStore.getCurrent()
-  };
+    founders: FounderStore.getAll()
+  }
+}
+
+function createLeafletMap() {
+  var tiles = L.tileLayer('http://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
+      attribution: 'Imagery from <a href="http://mapbox.com/about/maps/">MapBox</a> &mdash; ' +
+                   'Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+      maxZoom: 18,
+      id: 'mareksuscak.klk3k3lc',
+      subdomains: 'abcd'
+    });
+
+    var latLng = L.latLng(46.498, -0.791);
+
+    return L.map('leaflet-map-container', {center: latLng, zoom: 4, layers: [tiles]});
+}
+
+function addClusteredFounderPois(map, founders) {
+  var markers = L.markerClusterGroup();
+
+  founders.forEach(function(founder) {
+    var marker = L.marker(new L.LatLng(founder.latitude, founder.longitude), { title: founder.label });
+    marker.bindPopup(founder.label);
+    markers.addLayer(marker);
+  });
+
+  map.addLayer(markers);
 }
 
 var MapSection = React.createClass({
@@ -22,14 +47,8 @@ var MapSection = React.createClass({
 
   componentDidMount: function() {
     FounderStore.addChangeListener(this._onChange);
-
-    this._map = L.map('leaflet-map-container').setView([51.505, -0.09], 13);
-
-    L.tileLayer('http://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png', {
-      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-      maxZoom: 18,
-      id: 'examples.map-i875mjb7'
-    }).addTo(this._map);
+    this._map = createLeafletMap();
+    addClusteredFounderPois(this._map, this.state.founders);
   },
 
   componentWillUnmount: function() {
@@ -55,7 +74,9 @@ var MapSection = React.createClass({
    * Event handler for 'change' events coming from the stores
    */
   _onChange: function() {
-    this.setState(getStateFromStores());
+    // The react component itself is stateless
+    var state = getStateFromStores();
+    // TODO: redraw POIs on the map
   }
 
 });
