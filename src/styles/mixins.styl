@@ -1,4 +1,5 @@
-// The micro clearfix http://nicolasgallagher.com/micro-clearfix-hack/
+// The micro clearfix
+// Credits: http://nicolasgallagher.com/micro-clearfix-hack/
 clearfix()
   *zoom:1
 
@@ -10,10 +11,84 @@ clearfix()
   &:after
     clear:both
 
-verticalAlign()
+// Vertical alignment of elements
+vert-align()
   position relative
   top 50%
   transform translateY(-50%)
 
-verticalAlignParent()
+// Apply to parent of vertically aligned element
+vert-align-parent()
   transform-style preserve-3d
+
+// Generate grid columns
+generate-columns(columns = 12)
+  // Also create half column
+  percentWidth = 1% * ((0.5 / columns) * 100)
+  .col0
+    float left
+    width percentWidth
+
+  .margin0
+    margin-left percentWidth
+
+  .margin0r
+    margin-right percentWidth
+
+  // Iterate through our columns
+  for colCount in (1 .. columns)
+    // Convert each column count to a percentage: i.e. 1/12
+    percentWidth = 1% * ((colCount / columns) * 100)
+    // Column class for the width
+    .col{colCount}
+      float left
+      width percentWidth
+
+    // Column margins
+    .margin{colCount}
+      margin-left percentWidth
+
+    // Reversed margin on right-floated elements
+    .margin{colCount}r
+      margin-right percentWidth
+
+  // And clear last from both sides
+  .col{columns}
+    clear both
+
+// Generate grid rows
+generate-rows(rows = 16, increment = 40)
+  .row0
+    height 0px + (increment / 2)
+
+  // Generate 16 rows
+  for rowCount in (1 .. rows)
+    pixelHeight = 0px + (rowCount * increment)
+
+    .row{rowCount}
+      height pixelHeight
+
+// Grid generator
+generate-grid(columns = 12, rows = 16)
+  generate-columns(columns)
+  generate-rows(rows)
+
+// Generate paddings
+generate-pads(index, width)
+  pixelPadding = 0px + width
+
+  .pad{index}
+    padding pixelPadding
+
+  .pad{index}x
+    padding-left pixelPadding
+    padding-right pixelPadding
+
+  .pad{index}y
+    padding-top pixelPadding
+    padding-bottom pixelPadding
+
+
+
+
+
