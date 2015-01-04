@@ -45,6 +45,13 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('dist/vendor'));
 });
 
+// Copy NPM assets
+gulp.task('npm:assets', function() {
+  return gulp.src('node_modules/react-select/dist/default.css')
+    .pipe(plugins.rename("react-select.css"))
+    .pipe(gulp.dest('dist/styles/'));
+});
+
 // Compile static assets
 gulp.task('compile:assets', function() {
   return gulp.src('src/*.{html,txt,ico}')
@@ -150,6 +157,7 @@ gulp.task('watch:scripts', ['bower'], function() {
 
 // Watch js, styl AND static files, doing different things with each.
 gulp.task('watch', [
+  'npm:assets',
   'optimize:images',
   'compile:assets',
   'compile:styles',
@@ -172,6 +180,7 @@ gulp.task('serve', ['watch'], function() {
 
 // Build the application
 gulp.task('build', [
+  'npm:assets',
   'optimize:images',
   'compile:assets',
   'compile:styles',
