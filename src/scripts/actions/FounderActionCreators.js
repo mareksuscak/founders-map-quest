@@ -11,13 +11,13 @@ module.exports = {
   clickFounder: function(founderId) {
     AppDispatcher.handleViewAction({
       type: ActionTypes.CLICK_FOUNDER,
-      id: founderId
+      data: founderId
     });
   },
 
-  filterFounders: function(filter) {
+  applyFilter: function(filter) {
     AppDispatcher.handleViewAction({
-      type: ActionTypes.FILTER_FOUNDERS,
+      type: ActionTypes.APPLY_FILTER,
       data: filter
     });
   },

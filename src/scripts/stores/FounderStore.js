@@ -44,8 +44,27 @@ var FounderStore = assign({}, EventEmitter.prototype, {
     return _founders[id];
   },
 
+  /**
+   * Returns founders that are not hidden
+   */
   getAll: function() {
-    return _founders;
+    return _founders.filter(function(founder) {
+      return !founder.hidden;
+    });
+  },
+
+  getFiltered: function() {
+    var filteredList = getAll();
+
+    if(_filter.filterBy !== null) {
+      filteredList = filteredList.filter(filter);
+    }
+
+    if(_filter.sortBy !== null) {
+      filteredList = filteredList.sort(sort);
+    }
+
+    return filteredList;
   },
 
   getCurrentId: function() {
@@ -54,6 +73,10 @@ var FounderStore = assign({}, EventEmitter.prototype, {
 
   getCurrent: function() {
     return this.get(this.getCurrentId());
+  },
+
+  getFilter: function() {
+    return _filter;
   }
 
 });
@@ -64,20 +87,16 @@ FounderStore.dispatchToken = AppDispatcher.register(function(payload) {
   switch(action.type) {
 
     case ActionTypes.CLICK_FOUNDER:
-      console.log('CLICK_FOUNDER');
-      _currentId = action.founderId;
+      _currentId = action.data;
       break;
 
     case ActionTypes.PUBLISH_FOUNDERS:
-      console.log('PUBLISH_FOUNDERS');
       break;
 
-    case ActionTypes.FILTER_FOUNDERS:
-      console.log('FILTER_FOUNDERS');
+    case ActionTypes.APPLY_FILTER:
       break;
 
     case ActionTypes.RECEIVE_FOUNDERS:
-      console.log('RECEIVE_FOUNDERS');
       FounderStore.init(action.data);
       break;
 

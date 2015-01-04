@@ -9,7 +9,7 @@ module.exports = {
   ActionTypes: keyMirror({
     // View actions
     CLICK_FOUNDER: null,
-    FILTER_FOUNDERS: null,
+    APPLY_FILTER: null,
     PROCESS_CSV: null,
     PUBLISH_FOUNDERS: null,
     CANCEL_PUBLISHING: null,
