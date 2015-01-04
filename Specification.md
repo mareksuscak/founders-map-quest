@@ -21,6 +21,7 @@ Feature: Publishing new founders.
 Feature: Displaying founders on an interactive map.
   All founders located within the visible region of the map except those marked 
   as hidden should be displayed on a map as clustered POIs. 
+  NOTE: For the purpose of the assignment display all markers all the time.
 
 
 Feature: Displaying founders in a list.
