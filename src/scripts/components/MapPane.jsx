@@ -29,7 +29,7 @@ var MapPane = React.createClass({
 
     var map = L.mapbox.map('map', 'mareksuscak.klk3k3lc', {zoomControl: false});
     map.setView(latLng, zoom);
-    zoomControl.addTo(map)
+    zoomControl.addTo(map);
 
     this._map = map;
   },

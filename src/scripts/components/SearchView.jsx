@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    SortableFounderList = require('./SortableFounderList.jsx');
+    SortableFounderList = require('./SortableFounderList.jsx'); // jshint ignore:line
 
 var SearchView = React.createClass({
   render: function() {

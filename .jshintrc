@@ -29,6 +29,7 @@
     "jest"       : false,
     "expect"     : false,
     "runs"       : false,
-    "waitsFor"   : false
+    "waitsFor"   : false,
+    "L"          : false
   }
 }

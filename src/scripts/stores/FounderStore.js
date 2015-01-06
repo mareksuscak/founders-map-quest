@@ -8,6 +8,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher'),
 var ActionTypes = AppConstants.ActionTypes,
     EventTypes = AppConstants.EventTypes;
 
+var _filter = {};
 var _currentId = null;
 var _founders = [];
 
@@ -54,15 +55,7 @@ var FounderStore = assign({}, EventEmitter.prototype, {
   },
 
   getFiltered: function() {
-    var filteredList = getAll();
-
-    if(_filter.filterBy !== null) {
-      filteredList = filteredList.filter(filter);
-    }
-
-    if(_filter.sortBy !== null) {
-      filteredList = filteredList.sort(sort);
-    }
+    var filteredList = this.getAll();
 
     return filteredList;
   },

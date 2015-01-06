@@ -7,7 +7,6 @@ var autoprefixer = require('autoprefixer-stylus'),
     gulp = require('gulp'),
     plugins = require('gulp-load-plugins')(),
     stylish = require('jshint-stylish'),
-    reactify = require('reactify'),
     buffer = require('vinyl-buffer'),
     source = require('vinyl-source-stream'),
     watchify = require('watchify'),
@@ -48,7 +47,7 @@ gulp.task('bower', function() {
 // Copy NPM assets
 gulp.task('npm:assets', function() {
   return gulp.src('node_modules/react-select/dist/default.css')
-    .pipe(plugins.rename("react-select.css"))
+    .pipe(plugins.rename('react-select.css'))
     .pipe(gulp.dest('dist/styles/'));
 });
 
