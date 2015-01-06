@@ -20,10 +20,8 @@
   },
   "homepage": "https://github.com/mareksuscak/founders-map-quest",
   "dependencies": {
-    "flux": "^2.0.1",
     "keymirror": "^0.1.1",
     "object-assign": "^2.0.0",
-    "page": "^1.5.0",
     "react": "^0.12.2",
     "react-select": "^0.2.10"
   },

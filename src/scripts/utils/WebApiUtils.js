@@ -1,7 +1,5 @@
 'use strict';
 
-var FounderServerActionCreators = require('../actions/FounderServerActionCreators');
-
 // !!! Please Note !!!
 // We are using localStorage as an example, but in a real-world scenario, this
 // would involve XMLHttpRequest, or perhaps a newer client-server protocol.
@@ -9,38 +7,31 @@ var FounderServerActionCreators = require('../actions/FounderServerActionCreator
 // the contents of the functions are just trying to simulate client-server
 // communication and server-side processing.
 
+var STORAGE_KEY = 'founders';
+
 module.exports = {
 
   getAllFounders: function() {
-    // TODO: handle the case if the local storage is not initialized yet
-
     // simulate retrieving data from a database
-    var rawFounders = JSON.parse(localStorage.getItem('founders'));
+    var rawFounders = JSON.parse(localStorage.getItem(STORAGE_KEY));
 
-    // simulate success callback
-    FounderServerActionCreators.receiveAll(rawFounders);
+    if(rawFounders === null) {
+      return [];
+    }
+
+    return rawFounders;
   },
 
-  createFounders: function(founders) {
+  publishFounders: function(founders) {
     // simulate writing to a database
-    var rawFounders = JSON.parse(localStorage.getItem('founders'));
+    var rawFounders = JSON.parse(localStorage.getItem(STORAGE_KEY));
     var createdFounders = [];
 
     founders.forEach(function(founder) {
-      // TODO: properly create founders
-
-      var createdFounder = {
-        id: founder.id
-      };
-      createdFounders.push(createdFounder);
+      createdFounders.push(founder);
     });
 
-    localStorage.setItem('founders', JSON.stringify(rawFounders.concat(createdFounders)));
-
-    // simulate success callback
-    setTimeout(function() {
-      FounderServerActionCreators.receiveCreatedFounders(createdFounders);
-    }, 0);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(rawFounders.concat(createdFounders)));
   }
 
 };
