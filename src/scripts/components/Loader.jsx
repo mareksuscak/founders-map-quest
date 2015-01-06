@@ -6,12 +6,12 @@ var React = require('react'),
 var Loader = React.createClass({
 
   propTypes: {
-    active: React.PropTypes.bool.isRequired
+    isVisible: React.PropTypes.bool.isRequired
   },
 
   getDefaultProps: function() {
     return {
-      active: false
+      isVisible: false
     };
   },
 
@@ -21,7 +21,7 @@ var Loader = React.createClass({
       'animate': true,
       'loader': true,
       'z100': true,
-      'active': this.props.active
+      'active': this.props.isVisible
     });
 
     return (
