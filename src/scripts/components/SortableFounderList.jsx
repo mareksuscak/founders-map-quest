@@ -2,16 +2,16 @@
 
 var React = require('react');
 
-var Item = React.createClass({
+var SortableFounderList = React.createClass({
   render: function() {
     return (
       /*jshint ignore:start */
-      <div className="item">
-        Item
+      <div className="sortable-list">
+        SortableList
       </div>
       /*jshint ignore:end */
     );
   }
 });
 
-module.exports = Item;
+module.exports = SortableFounderList;

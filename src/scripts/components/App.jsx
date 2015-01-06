@@ -1,22 +1,38 @@
 'use strict';
 
 var React = require('react'),
-    MainSection = require('./MainSection.jsx'), // jshint ignore:line
-    MapSection = require('./MapSection.jsx'); // jshint ignore:line
+    MapPane = require('./MapPane.jsx'), // jshint ignore:line
+    NavBar = require('./NavBar.jsx'), // jshint ignore:line
+    SearchView = require('./SearchView.jsx'), // jshint ignore:line
+    RegistrationView = require('./RegistrationView.jsx'), // jshint ignore:line
+    Loader = require('./Loader.jsx'); // jshint ignore:line
 
 var App = React.createClass({
 
-  render: function() {
+  getInitialState: function() {
+    return {
+      isLoading: false
+    }
+  },
 
+  componentDidMount: function() {
+
+  },
+
+  render: function() {
     return (
       /*jshint ignore:start */
-      <div className="founder-map-app">
-        <MainSection/>
-        <MapSection/>
+      <div className="app">
+        <MapPane/>
+        <NavBar/>
+        <SearchView/>
+        <RegistrationView/>
+        <Loader active={this.state.isLoading}/>
       </div>
       /*jshint ignore:end */
     );
   }
+
 });
 
 module.exports = App;

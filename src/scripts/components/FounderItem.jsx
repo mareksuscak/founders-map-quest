@@ -2,18 +2,16 @@
 
 var React = require('react');
 
-var Loader = React.createClass({
-
+var FounderItem = React.createClass({
   render: function() {
     return (
       /*jshint ignore:start */
-      <div className="loader">
-        <img src="images/loader.gif" />
+      <div className="founder-item">
+        Founder Item
       </div>
       /*jshint ignore:end */
     );
   }
-
 });
 
-module.exports = Loader;
+module.exports = FounderItem;

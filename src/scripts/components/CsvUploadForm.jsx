@@ -2,16 +2,16 @@
 
 var React = require('react');
 
-var List = React.createClass({
+var CsvUploadForm = React.createClass({
   render: function() {
     return (
       /*jshint ignore:start */
-      <div className="list">
-        List
+      <div className="csv-upload-form">
+        Csv Upload
       </div>
       /*jshint ignore:end */
     );
   }
 });
 
-module.exports = List;
+module.exports = CsvUploadForm;

@@ -2,6 +2,52 @@
 @require 'mixins'
 @require 'base'
 
-/* Mobile and Tablets
+/* Loader overlay
 ------------------------------------------------------- */
-// @media only screen and (max-width: 640px)
+.map-pane
+  bottom 0
+  left 0
+  position fixed
+  right 0
+  top 0
+
+
+/* Loader overlay
+------------------------------------------------------- */
+.navbar
+  left 10px
+  position fixed
+  top 10px
+
+/* Loader overlay
+------------------------------------------------------- */
+.loader
+  vert-align-parent()
+  background-color rgba(0,0,0,0.5)
+  bottom 0
+  visibility hidden
+  left 0
+  height 100%
+  opacity 0
+  position fixed
+  right 0
+  top 0
+  text-align center
+  width 100%
+
+  &.active
+    visibility visible
+    opacity 1.0
+
+  .spinner
+    vert-align()
+    background url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB3aWR0aD0nMTIwcHgnIGhlaWdodD0nMTIwcHgnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHByZXNlcnZlQXNwZWN0UmF0aW89InhNaWRZTWlkIiBjbGFzcz0idWlsLXBvaSI+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEwMCIgaGVpZ2h0PSIxMDAiIGZpbGw9Im5vbmUiIGNsYXNzPSJiayI+PC9yZWN0PgogIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDUwLDQ1KSI+CiAgICA8Zz4KICAgICAgPGcgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTUwLC00NSkiPgogICAgICAgIDxwYXRoIGQ9Ik03Ny41LDQ1LjNjMC0xNS4zLTEyLjMtMjcuOC0yNy41LTI3LjhTMjIuNSwyOS45LDIyLjUsNDUuM2MwLDEzLjMsOS4zLDI0LjUsMjEuNywyNy4xTDUwLDgyLjVsNS44LTEwLjEgQzY4LjIsNjkuNyw3Ny41LDU4LjYsNzcuNSw0NS4zeiBNNTAuMyw1NS40Yy01LjQsMC05LjctNC40LTkuNy05LjhjMC01LjQsNC4zLTkuOCw5LjctOS44czkuNyw0LjQsOS43LDkuOCBDNjAsNTEsNTUuNyw1NS40LDUwLjMsNTUuNHoiIGZpbGw9IiNkNTEiPgogICAgICAgICAgPGFuaW1hdGVUcmFuc2Zvcm0gYXR0cmlidXRlTmFtZT0idHJhbnNmb3JtIiB0eXBlPSJ0cmFuc2xhdGUiIGR1cj0iMXMiIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBmcm9tPSIwLDE3IiB0bz0iMCwxNyIgdmFsdWVzPSIwLDE3OzAsLTE3OzAsMTciIGtleVRpbWVzPSIwOzAuNTsxIiBrZXlTcGxpbmVzPSIwLjQgMC44IDAuNCAwLjg7MC44IDAuNCAwLjggMC40IiBjYWxjTW9kZT0ic3BsaW5lIj48L2FuaW1hdGVUcmFuc2Zvcm0+CiAgICAgICAgPC9wYXRoPgogICAgICA8L2c+CiAgICAgIDxhbmltYXRlVHJhbnNmb3JtIGF0dHJpYnV0ZU5hbWU9InRyYW5zZm9ybSIgdHlwZT0ibm9uZSIgZnJvbT0iMCIgdG89IjM2MCIgZHVyPSIxcyIgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiPjwvYW5pbWF0ZVRyYW5zZm9ybT4KICAgIDwvZz4KICA8L2c+Cjwvc3ZnPg==') no-repeat center center
+    background-size: 60px;
+    height 60px
+    margin 0 auto
+    width 60px
+
+
+/* Desktop
+------------------------------------------------------- */
+// @media only screen and (min-width: 640px)
