@@ -58,7 +58,7 @@
     "node": ">=0.10.35"
   },
   "browser": {
-    "leaflet": "./vendor/leaflet/dist/leaflet.js",
+    "mapbox.js": "./vendor/mapbox.js/mapbox.js",
     "leaflet.markercluster": "./vendor/leaflet.markercluster/dist/leaflet.markercluster.js"
   },
   "browserify": {

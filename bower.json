@@ -12,14 +12,14 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "dist/components/",
+    "vendor",
+    "dist/vendor/",
     "test",
     "tests"
   ],
   "dependencies": {
     "font-awesome": "~4.2.0",
-    "leaflet": "~0.7.3",
-    "leaflet.markercluster": "~0.4.0"
+    "leaflet.markercluster": "~0.4.0",
+    "mapbox.js": "~2.1.3"
   }
 }
