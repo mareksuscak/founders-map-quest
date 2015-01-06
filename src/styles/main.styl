@@ -14,10 +14,44 @@
 
 /* Loader overlay
 ------------------------------------------------------- */
-.navbar
+.navbar-wrapper
   left 10px
   position fixed
   top 10px
+
+  .navbar-overlay
+    width 500px
+
+    a.button
+      background transparent
+      border-left 1px solid rgba(255,255,255,0.25)
+
+    a.button.active
+      background-color rgba(40,53,61,0.5)
+
+    .nav-search
+      height 40px
+      width 40px
+
+  h1
+    color rgba(255, 255, 255, 0.7)
+    font-size 22px
+    line-height 40px
+    margin 0 10px
+    user-select none
+
+    strong
+      color rgba(255, 255, 255, 1)
+
+  .nav-register
+    background-color #9b59b6
+
+  .nav-register:hover
+  .nav-register.active
+    background-color #A66BBE
+    color #fff
+
+
 
 /* Loader overlay
 ------------------------------------------------------- */

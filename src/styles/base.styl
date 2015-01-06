@@ -600,25 +600,25 @@ input[type=number].clean:focus
   z-index 100
 
 .round
-  border-radius 3px
+  border-radius 3px !important
 
 .round-top
-  border-radius 3px 3px 0 0
+  border-radius 3px 3px 0 0 !important
 
 .round-right
-  border-radius 0 3px 3px 0
+  border-radius 0 3px 3px 0 !important
 
 .round-bottom
-  border-radius 0 0 3px 3px
+  border-radius 0 0 3px 3px !important
 
 .round-left
-  border-radius 3px 0 0 3px
+  border-radius 3px 0 0 3px !important
 
 .unround
-  border-radius 0
+  border-radius 0 !important
 
 .unborder
-  border none
+  border none !important
 
 .caption
   display block
@@ -627,3 +627,6 @@ input[type=number].clean:focus
   text-overflow ellipsis
   white-space nowrap
   overflow hidden
+
+.clearfix
+  clearfix()
