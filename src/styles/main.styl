@@ -2,7 +2,7 @@
 @require 'mixins'
 @require 'base'
 
-/* Loader overlay
+/* Map Pane
 ------------------------------------------------------- */
 .map-pane
   bottom 0
@@ -12,7 +12,7 @@
   top 0
 
 
-/* Loader overlay
+/* Navbar
 ------------------------------------------------------- */
 .navbar-wrapper
   left 10px
@@ -51,6 +51,18 @@
     background-color #A66BBE
     color #fff
 
+/* Views
+------------------------------------------------------- */
+.view
+  background-color #fff
+  left 10px
+  position fixed
+  top 50px
+  visibility hidden
+  width 500px
+
+  &.active
+    visibility visible
 
 
 /* Loader overlay

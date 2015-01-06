@@ -56,12 +56,12 @@ var NavBar = React.createClass({
             <h1 className="fl">Founders<strong>Map</strong></h1>
           </a>
           <div className="navbar fr">
-            <a href="" className={searchLinkClasses} onClick={this.handleSearchClick}>
+            <a href="#!/search" className={searchLinkClasses} onClick={this.handleSearchClick}>
               <i className="fa fa-search"/>
             </a>
           </div>
         </div>
-        <a href="" className={registrationLinkClasses} onClick={this.handleRegistrationClick}>
+        <a href="#!/registration" className={registrationLinkClasses} onClick={this.handleRegistrationClick}>
           Registration
         </a>
       </nav>

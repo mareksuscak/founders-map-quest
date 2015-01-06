@@ -6,7 +6,7 @@ var SortableFounderList = React.createClass({
   render: function() {
     return (
       /*jshint ignore:start */
-      <div className="sortable-list">
+      <div className="sortable-list pad2">
         SortableList
       </div>
       /*jshint ignore:end */

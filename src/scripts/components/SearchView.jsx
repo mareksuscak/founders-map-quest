@@ -21,12 +21,14 @@ var SearchView = React.createClass({
     var classes = cx({
       'search-view': true,
       'view': true,
+      'z10': true,
+      //'animate': true,
       'active': this.props.isVisible
     });
 
     return (
       <div className={classes}>
-        <SortableFounderList/>
+          <SortableFounderList/>
       </div>
     );
     /*jshint ignore:end */

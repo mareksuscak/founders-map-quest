@@ -6,7 +6,7 @@ var CsvUploadForm = React.createClass({
   render: function() {
     return (
       /*jshint ignore:start */
-      <div className="csv-upload-form">
+      <div className="csv-upload-form pad2">
         Csv Upload
       </div>
       /*jshint ignore:end */
