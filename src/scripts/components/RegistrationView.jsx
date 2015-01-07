@@ -8,7 +8,9 @@ var React = require('react'),
 var RegistrationView = React.createClass({
 
   propTypes: {
-    isVisible: React.PropTypes.bool
+    isVisible: React.PropTypes.bool,
+    onLoadStart: React.PropTypes.func,
+    onLoadEnd: React.PropTypes.func
   },
 
   getDefaultProps: function() {

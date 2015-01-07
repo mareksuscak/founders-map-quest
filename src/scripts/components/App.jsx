@@ -62,6 +62,14 @@ var App = React.createClass({
     }.bind(this);
   },
 
+  handleLoadStart: function() {
+    this.setState({ isLoading: true });
+  },
+
+  handleLoadEnd: function() {
+    this.setState({ isLoading: false });
+  },
+
   render: function() {
     /*jshint ignore:start */
     return (

@@ -28,6 +28,11 @@ var NavBar = React.createClass({
     }
   },
 
+  handleLogoClick: function(e) {
+    e.preventDefault();
+    page('/');
+  },
+
   render: function() {
     /*jshint ignore:start */
     var searchLinkClasses = cx({
@@ -52,7 +57,7 @@ var NavBar = React.createClass({
     return (
       <nav className="navbar-wrapper z10 clearfix">
         <div className="navbar-overlay fl dark fill-darken2">
-          <a href="#/">
+          <a href="#!/" onClick={this.handleLogoClick}>
             <h1 className="fl">Founders<strong>Map</strong></h1>
           </a>
           <div className="navbar fr">
