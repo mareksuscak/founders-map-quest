@@ -1,12 +1,17 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    WebApiUtils = require('../utils/WebApiUtils');
 
 // These do bind automatically
 require('mapbox.js');
 require('leaflet.markercluster');
 
 var MapPane = React.createClass({
+
+  propTypes: {
+    allFounders: React.PropTypes.array.isRequired
+  },
 
   componentDidMount: function() {
     this.bindMap();

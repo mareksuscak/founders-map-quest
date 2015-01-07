@@ -2,6 +2,7 @@
 
 var React = require('react'),
     page = require('page'),
+    WebApiUtils = require('../utils/WebApiUtils'),
     MapPane = require('./MapPane.jsx'), // jshint ignore:line
     NavBar = require('./NavBar.jsx'), // jshint ignore:line
     SearchView = require('./SearchView.jsx'), // jshint ignore:line
@@ -13,7 +14,8 @@ var App = React.createClass({
   getInitialState: function() {
     return {
       activeView: '',
-      isLoading: false
+      isLoading: true,
+      allFounders: []
     };
   },
 
@@ -24,10 +26,17 @@ var App = React.createClass({
       // We don't support server-side routes so always add a hashbang
       hashbang: true
     });
+
+    this.loadData();
   },
 
   componentWillUnmount: function() {
     page.stop();
+  },
+
+  loadData: function() {
+    var data = WebApiUtils.getAllFounders();
+    this.setState({ allFounders: data, isLoading: false });
   },
 
   registerRoutes: function() {
@@ -57,9 +66,9 @@ var App = React.createClass({
     /*jshint ignore:start */
     return (
       <div className="app">
-        <MapPane/>
+        <MapPane allFounders={this.state.allFounders}/>
         <NavBar activeView={this.state.activeView}/>
-        <SearchView isVisible={this.state.activeView === 'search'}/>
+        <SearchView isVisible={this.state.activeView === 'search'} allFounders={this.state.allFounders}/>
         <RegistrationView isVisible={this.state.activeView === 'registration'}/>
         <Loader isVisible={this.state.isLoading}/>
       </div>

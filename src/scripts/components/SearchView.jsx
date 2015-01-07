@@ -7,7 +7,8 @@ var React = require('react'),
 var SearchView = React.createClass({
 
   propTypes: {
-    isVisible: React.PropTypes.bool
+    isVisible: React.PropTypes.bool.isRequired,
+    allFounders: React.PropTypes.array.isRequired
   },
 
   getDefaultProps: function() {
