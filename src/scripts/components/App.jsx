@@ -53,14 +53,22 @@ var App = React.createClass({
     }.bind(this);
   },
 
+  handleLoadStart: function() {
+    this.setState({ isLoading: true });
+  },
+
+  handleLoadEnd: function() {
+    this.setState({ isLoading: false });
+  },
+
   render: function() {
     /*jshint ignore:start */
     return (
       <div className="app">
         <MapPane/>
         <NavBar activeView={this.state.activeView}/>
-        <SearchView isVisible={this.state.activeView === 'search'}/>
-        <RegistrationView isVisible={this.state.activeView === 'registration'}/>
+        <SearchView isVisible={this.state.activeView === 'search'} onLoadStart={this.handleLoadStart} onLoadEnd={this.handleLoadEnd}/>
+        <RegistrationView isVisible={this.state.activeView === 'registration'} onLoadStart={this.handleLoadStart} onLoadEnd={this.handleLoadEnd}/>
         <Loader isVisible={this.state.isLoading}/>
       </div>
     );
