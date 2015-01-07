@@ -30,7 +30,7 @@ var SearchView = React.createClass({
 
     return (
       <div className={classes}>
-          <SortableFounderList/>
+          <SortableFounderList allFounders={this.props.allFounders}/>
       </div>
     );
     /*jshint ignore:end */
