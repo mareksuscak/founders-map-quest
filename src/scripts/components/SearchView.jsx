@@ -23,6 +23,7 @@ var SearchView = React.createClass({
       'search-view': true,
       'view': true,
       'z10': true,
+      'round-bottom': true,
       //'animate': true,
       'active': this.props.isVisible
     });
