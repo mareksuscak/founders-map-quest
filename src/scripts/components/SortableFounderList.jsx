@@ -46,7 +46,7 @@ var SortableFounderList = React.createClass({
           </a>
         </div>
         <div className="clearfix">
-          <button className="col12" onClick={this.handleSearchRun}>Search</button>
+          <button className="col12" onClick={this.handleSearchRun}>Apply filter</button>
         </div>
       </div>
       /*jshint ignore:end */
