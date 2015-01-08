@@ -3,6 +3,11 @@
 var React = require('react');
 
 var CsvUploadForm = React.createClass({
+
+  handleNextStepClick: function() {
+
+  },
+
   render: function() {
     return (
       /*jshint ignore:start */
@@ -11,12 +16,13 @@ var CsvUploadForm = React.createClass({
           <textarea placeholder="Paste founders CSV here..." className="row4 col12"/>
         </div>
         <div className="clearfix">
-          <button className="col12" onClick={this.handleSearchRun}>Process CSV</button>
+          <button className="col12" onClick={this.handleNextStepClick}>Next step</button>
         </div>
       </div>
       /*jshint ignore:end */
     );
   }
+
 });
 
 module.exports = CsvUploadForm;
