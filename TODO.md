@@ -7,3 +7,4 @@
 - Field Mapping form
 - Registration status component that will show steps
 - Registration cancel button
+- Collapse SortableFounderList into SearchView and make SortableFounderList contain only a list
