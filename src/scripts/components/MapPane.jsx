@@ -1,7 +1,6 @@
 'use strict';
 
-var React = require('react'),
-    WebApiUtils = require('../utils/WebApiUtils');
+var React = require('react');
 
 // These do bind automatically
 require('mapbox.js');
@@ -84,7 +83,7 @@ var MapPane = React.createClass({
 
   focusFounderMarker: function(id) {
     var markerLayer = this._markersIndex[id];
-    var matchingFounders = this.props.data.filter(function(founder) { return founder.id === id });
+    var matchingFounders = this.props.data.filter(function(founder) { return founder.id === id; });
 
     if(!markerLayer || matchingFounders.length === 0) {
       return;

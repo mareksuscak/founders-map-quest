@@ -1,7 +1,7 @@
 'use strict';
 
 var React = require('react'),
-    cx = require('react/lib/cx'),
+    cx = require('react/lib/cx'), // jshint ignore:line
     CsvUploadForm = require('./CsvUploadForm.jsx'), // jshint ignore:line
     FieldMappingForm = require('./FieldMappingForm.jsx'); // jshint ignore:line
 
