@@ -28,7 +28,7 @@ var ItemList = React.createClass({
 
     return (
       <div className={containerClasses}>
-        {items}
+        {items.length > 0 && items}
       </div>
     );
     /*jshint ignore:end */
