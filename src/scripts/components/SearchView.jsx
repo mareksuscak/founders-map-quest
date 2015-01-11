@@ -2,7 +2,7 @@
 
 var React = require('react'),
     cx = require('react/lib/cx'),
-    SortableFounderList = require('./SortableFounderList.jsx'); // jshint ignore:line
+    FilterableFounderList = require('./FilterableFounderList.jsx'); // jshint ignore:line
 
 var SearchView = React.createClass({
 
@@ -30,7 +30,7 @@ var SearchView = React.createClass({
 
     return (
       <div className={classes}>
-          <SortableFounderList allFounders={this.props.allFounders}/>
+          <FilterableFounderList allFounders={this.props.allFounders}/>
       </div>
     );
     /*jshint ignore:end */

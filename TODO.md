@@ -1,4 +1,3 @@
-- Rename SortableFounderList to FilterableFounderList
 - Create Filter component and encapsulate the filter form functionality in it
 - When search navbar icon is clicked, display all founders by default sorted by date added desc
 - Apply a CSS transition when opening any view from the navbar

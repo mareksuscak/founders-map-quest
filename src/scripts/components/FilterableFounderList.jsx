@@ -3,7 +3,7 @@
 var React = require('react'),
     ReactSelect = require('react-select');
 
-var SortableFounderList = React.createClass({
+var FilterableFounderList = React.createClass({
 
   getInitialState: function() {
     return {
@@ -54,4 +54,4 @@ var SortableFounderList = React.createClass({
   }
 });
 
-module.exports = SortableFounderList;
+module.exports = FilterableFounderList;
