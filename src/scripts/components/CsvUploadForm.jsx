@@ -1,16 +1,17 @@
 'use strict';
 
 var React = require('react'),
-    cx = require('react/lib/cx');
+    cx = require('react/lib/cx'); // jshint ignore:line
 
 var CsvUploadForm = React.createClass({
 
   propTypes: {
-    isVisible: React.PropTypes.bool.isRequired
+    isVisible: React.PropTypes.bool.isRequired,
+    onNextStep: React.PropTypes.func.isRequired
   },
 
   handleNextStepClick: function() {
-
+    this.props.onNextStep();
   },
 
   render: function() {

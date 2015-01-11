@@ -1,17 +1,18 @@
 'use strict';
 
 var React = require('react'),
-    cx = require('react/lib/cx'),
-    ReactSelect = require('react-select');
+    cx = require('react/lib/cx'), // jshint ignore:line
+    ReactSelect = require('react-select'); // jshint ignore:line
 
 var FieldMappingForm = React.createClass({
 
   propTypes: {
-    isVisible: React.PropTypes.bool.isRequired
+    isVisible: React.PropTypes.bool.isRequired,
+    onNextStep: React.PropTypes.func.isRequired
   },
 
   handleFinishClick: function() {
-
+    this.props.onNextStep();
   },
 
   render: function() {

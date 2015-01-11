@@ -17,6 +17,18 @@ var RegistrationView = React.createClass({
     };
   },
 
+  handleUploadNextStep: function() {
+    this.setState({
+      activeForm: 'mapping'
+    });
+  },
+
+  handleMappingNextStep: function() {
+    this.setState({
+      activeForm: 'upload'
+    });
+  },
+
   render: function() {
     /*jshint ignore:start */
     var classes = cx({
@@ -30,8 +42,8 @@ var RegistrationView = React.createClass({
 
     return (
       <div className={classes}>
-        <CsvUploadForm isVisible={this.state.activeForm === 'upload'}/>
-        <FieldMappingForm isVisible={this.state.activeForm === 'mapping'}/>
+        <CsvUploadForm isVisible={this.state.activeForm === 'upload'} onNextStep={this.handleUploadNextStep}/>
+        <FieldMappingForm isVisible={this.state.activeForm === 'mapping'} onNextStep={this.handleMappingNextStep}/>
       </div>
     );
     /*jshint ignore:end */
