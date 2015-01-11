@@ -68,10 +68,6 @@ module.exports = {
     return rawFounders;
   },
 
-  getFilteredFounders: function(filter) {
-    var filtered
-  },
-
   publishFounders: function(founders) {
     // simulate writing to a database
     var rawFounders = JSON.parse(localStorage.getItem(STORAGE_KEY));

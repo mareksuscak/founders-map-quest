@@ -63,7 +63,6 @@ var FilteredListView = React.createClass({
       'filter-state': true,
       'clearfix': true,
       'visible': this.state.activeScreen === 'list',
-      'space-bottom0': true,
       'pad2': true
     });
 
