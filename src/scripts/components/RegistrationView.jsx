@@ -8,14 +8,12 @@ var React = require('react'),
 var RegistrationView = React.createClass({
 
   propTypes: {
-    isVisible: React.PropTypes.bool,
-    onLoadStart: React.PropTypes.func,
-    onLoadEnd: React.PropTypes.func
+    isVisible: React.PropTypes.bool.isRequired
   },
 
-  getDefaultProps: function() {
+  getInitialState: function() {
     return {
-      isVisible: false
+      activeForm: 'upload'
     };
   },
 
@@ -26,14 +24,14 @@ var RegistrationView = React.createClass({
       'view': true,
       'z10': true,
       'round-bottom': true,
-      //'animate': true,
+      'pad2': true,
       'active': this.props.isVisible
     });
 
     return (
       <div className={classes}>
-        <CsvUploadForm/>
-        <FieldMappingForm/>
+        <CsvUploadForm isVisible={this.state.activeForm === 'upload'}/>
+        <FieldMappingForm isVisible={this.state.activeForm === 'mapping'}/>
       </div>
     );
     /*jshint ignore:end */

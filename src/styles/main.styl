@@ -58,13 +58,13 @@
   left 10px
   position fixed
   top 50px
-  visibility hidden
+  display none
   width 500px
 
   &.active
-    visibility visible
+    display block
 
-/* Search View
+/* Filtered List View
 ------------------------------------------------------- */
 a.sort-order
   display block
@@ -75,7 +75,19 @@ a.sort-order
 .Select-control
   transition none
   border-radius 0
-  border-color rgba(0,0,0,0.1);
+  border-color rgba(0,0,0,0.1)
+
+.screen
+  display none
+
+  &.active
+    display block
+
+.filter-state
+  display none
+
+  &.visible
+    display block
 
 /* Loader overlay
 ------------------------------------------------------- */

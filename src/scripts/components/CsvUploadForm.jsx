@@ -1,17 +1,28 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    cx = require('react/lib/cx');
 
 var CsvUploadForm = React.createClass({
+
+  propTypes: {
+    isVisible: React.PropTypes.bool.isRequired
+  },
 
   handleNextStepClick: function() {
 
   },
 
   render: function() {
+    /*jshint ignore:start */
+    var containerClasses = cx({
+      'screen': true,
+      'csv-upload-form': true,
+      'active': this.props.isVisible
+    });
+
     return (
-      /*jshint ignore:start */
-      <div className="csv-upload-form pad2">
+      <div className={containerClasses}>
         <div className="space-bottom1 clearfix">
           <textarea placeholder="Paste founders CSV here..." className="row4 col12"/>
         </div>
@@ -19,8 +30,8 @@ var CsvUploadForm = React.createClass({
           <button className="col12" onClick={this.handleNextStepClick}>Next step</button>
         </div>
       </div>
-      /*jshint ignore:end */
     );
+    /*jshint ignore:end */
   }
 
 });

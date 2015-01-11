@@ -5,7 +5,7 @@ var React = require('react'),
     WebApiUtils = require('../utils/WebApiUtils'),
     MapPane = require('./MapPane.jsx'), // jshint ignore:line
     NavBar = require('./NavBar.jsx'), // jshint ignore:line
-    SearchView = require('./SearchView.jsx'), // jshint ignore:line
+    FilteredListView = require('./FilteredListView.jsx'), // jshint ignore:line
     RegistrationView = require('./RegistrationView.jsx'), // jshint ignore:line
     Loader = require('./Loader.jsx'); // jshint ignore:line
 
@@ -15,7 +15,7 @@ var App = React.createClass({
     return {
       activeView: '',
       isLoading: true,
-      allFounders: []
+      data: []
     };
   },
 
@@ -36,7 +36,7 @@ var App = React.createClass({
 
   loadData: function() {
     var data = WebApiUtils.getAllFounders();
-    this.setState({ allFounders: data, isLoading: false });
+    this.setState({ data: data, isLoading: false });
   },
 
   registerRoutes: function() {
@@ -74,9 +74,9 @@ var App = React.createClass({
     /*jshint ignore:start */
     return (
       <div className="app">
-        <MapPane allFounders={this.state.allFounders}/>
+        <MapPane data={this.state.data}/>
         <NavBar activeView={this.state.activeView}/>
-        <SearchView isVisible={this.state.activeView === 'search'} allFounders={this.state.allFounders}/>
+        <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data}/>
         <RegistrationView isVisible={this.state.activeView === 'registration'}/>
         <Loader isVisible={this.state.isLoading}/>
       </div>

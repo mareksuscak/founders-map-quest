@@ -2,36 +2,33 @@
 
 var React = require('react'),
     cx = require('react/lib/cx'),
-    ReactSelect = require('react-select');
+    Item = require('./Item.jsx');
 
-var FieldMappingForm = React.createClass({
+var ItemList = React.createClass({
 
   propTypes: {
     isVisible: React.PropTypes.bool.isRequired
   },
 
-  handleFinishClick: function() {
-
-  },
-
   render: function() {
     /*jshint ignore:start */
+    var items = (
+      <Item/>
+    );
+
     var containerClasses = cx({
+      'filtered-list': true,
       'screen': true,
-      'mapping-form': true,
       'active': this.props.isVisible
     });
 
     return (
       <div className={containerClasses}>
-        <div className="clearfix">
-          <button className="col12" onClick={this.handleFinishClick}>Finish</button>
-        </div>
+        {items}
       </div>
     );
     /*jshint ignore:end */
   }
-
 });
 
-module.exports = FieldMappingForm;
+module.exports = ItemList;
