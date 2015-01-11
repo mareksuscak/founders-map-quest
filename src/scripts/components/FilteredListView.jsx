@@ -21,20 +21,6 @@ var FilteredListView = React.createClass({
     };
   },
 
-  componentDidMount: function() {
-    this.refreshMaxHeight();
-    window.addEventListener('resize', this.refreshMaxHeight);
-  },
-
-  componentWillUnmount: function() {
-    window.removeEventListener('resize', this.refreshMaxHeight);
-  },
-
-  refreshMaxHeight: function() {
-    var maxHeight = document.documentElement.clientHeight - 60; // 10 margin top, 10 margin bottom, 40 navbar
-    this.refs.container.getDOMNode().style.maxHeight = maxHeight.toString() + 'px';
-  },
-
   onConfigureFilterClick: function(e) {
     e.preventDefault();
     this.setState({
@@ -70,7 +56,7 @@ var FilteredListView = React.createClass({
     var filteredData = this.props.data;
 
     return (
-      <div ref="container" className={containerClasses}>
+      <div className={containerClasses}>
         <div className={filterStateClasses}>
           <small className="fl">Matched <em>{filteredData.length}</em> item(s)</small>
 

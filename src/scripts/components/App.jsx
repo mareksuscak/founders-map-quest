@@ -28,15 +28,29 @@ var App = React.createClass({
     });
 
     this.loadData();
+
+    // Max height for all views
+    this.refreshMaxHeight();
+    window.addEventListener('resize', this.refreshMaxHeight);
   },
 
   componentWillUnmount: function() {
     page.stop();
+    window.removeEventListener('resize', this.refreshMaxHeight);
   },
 
   loadData: function() {
     var data = WebApiUtils.getAllFounders();
     this.setState({ data: data, isLoading: false });
+  },
+
+  refreshMaxHeight: function() {
+    var maxHeight = document.documentElement.clientHeight - 60; // 10 margin top, 10 margin bottom, 40 navbar
+    var views = document.querySelectorAll('.view');
+
+    [].forEach.call(views, function(view) {
+      view.style.maxHeight = maxHeight.toString() + 'px'
+    });
   },
 
   registerRoutes: function() {
@@ -60,14 +74,6 @@ var App = React.createClass({
         cb(context);
       }
     }.bind(this);
-  },
-
-  handleLoadStart: function() {
-    this.setState({ isLoading: true });
-  },
-
-  handleLoadEnd: function() {
-    this.setState({ isLoading: false });
   },
 
   render: function() {
