@@ -49,7 +49,7 @@ var App = React.createClass({
     var views = document.querySelectorAll('.view');
 
     [].forEach.call(views, function(view) {
-      view.style.maxHeight = maxHeight.toString() + 'px'
+      view.style.maxHeight = maxHeight.toString() + 'px';
     });
   },
 
