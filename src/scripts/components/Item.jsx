@@ -27,8 +27,8 @@ var Item = React.createClass({
         <h3 className="col12">
           <a href="#" onClick={this.handleLabelClick}>{this.props.data.companyName}</a>,&nbsp;
           <small>
-            <a href="#" onClick={this.handleUnhideClick}><i className="fa fa-eye"/></a>
-            <a href="#" className="active" onClick={this.handleHideClick}><i className="fa fa-eye-slash"/></a>
+            <a href="#" title="Show on map" onClick={this.handleUnhideClick}><i className="fa fa-eye"/></a>
+            <a href="#" className="active" title="Hide on map" onClick={this.handleHideClick}><i className="fa fa-eye-slash"/></a>
           </small>
         </h3>
 
