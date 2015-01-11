@@ -3,23 +3,38 @@
 var React = require('react');
 
 var Item = React.createClass({
-  /*jshint ignore:start */
+
+  propTypes: {
+    data: React.PropTypes.object.isRequired
+  },
+
   render: function() {
+    /*jshint ignore:start */
     return (
-      <div className="item">
-        <h3>
-          <a href="#">Label</a>
+      <div className="item clearfix">
+        <h3 className="col12">
+          <a href="#">{this.props.data.companyName}</a>
         </h3>
 
-        <ul>
-          <li><strong>Property: </strong>Value</li>
-        </ul>
+        <div className="col8">
+          <small>{this.props.data.founders}, <a href={this.props.data.homepage} target="_blank"><i className="fa fa-home"/></a></small>
 
-        <img src="http://interviewsummary.com/wp-content/uploads/2013/07/larry-page-and-sergey-brin-of-google-620x400.jpg" />
+          <p>
+            <strong>Address:</strong><br/>
+            {this.props.data.street}<br/>
+            {this.props.data.city}, {this.props.data.postalCode}<br/>
+            {this.props.data.country}
+          </p>
+        </div>
+
+        <a href={this.props.data.photo} target="_blank">
+          <img className="col4" src={this.props.data.photo} />
+        </a>
       </div>
     );
     /*jshint ignore:end */
   }
+
 });
 
 module.exports = Item;

@@ -1,8 +1,8 @@
 'use strict';
 
 var React = require('react'),
-    cx = require('react/lib/cx'),
-    ReactSelect = require('react-select');
+    cx = require('react/lib/cx'), // jshint ignore:line
+    ReactSelect = require('react-select'); // jshint ignore:line
 
 var Filter = React.createClass({
 
@@ -15,7 +15,7 @@ var Filter = React.createClass({
     return {
       searchTerm: '',
       sortBy: '',
-      sortOrder: 'asc'
+      sortOrder: 'desc'
     };
   },
 
@@ -30,7 +30,7 @@ var Filter = React.createClass({
     });
   },
 
-  handleApplyFilter: function(e) {
+  handleApplyFilter: function() {
     this.props.onChange(this.state);
   },
 
@@ -46,6 +46,7 @@ var Filter = React.createClass({
     var containerClasses = cx({
       'filter': true,
       'screen': true,
+      'pad2': true,
       'active': this.props.isVisible
     });
 
