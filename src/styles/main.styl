@@ -99,15 +99,35 @@ a.sort-order
     margin-bottom 0
     font-size 20px
     line-height 24px
+    overflow hidden
+
+    small
+      display inline-block
+
+    a.active
+      color #c0392b
+
+    a.active:hover
+      color #e74c3c
+
+  .details small
+    overflow hidden
 
   strong
     color rgba(0,0,0,0.8)
 
   p
     font-size 14px
+    overflow hidden
 
   img
     padding-left 10px
+
+.csv-upload-form
+
+  input[type=radio]
+    margin-right 7px
+    margin-top 3px
 
 /* Loader overlay
 ------------------------------------------------------- */
