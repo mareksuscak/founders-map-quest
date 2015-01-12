@@ -4,6 +4,8 @@ var React = require('react'),
     cx = require('react/lib/cx'), // jshint ignore:line
     ReactSelect = require('react-select'); // jshint ignore:line
 
+var DEFAULT_SEPARATOR = 'comma';
+
 var CsvUploadForm = React.createClass({
 
   propTypes: {
@@ -11,13 +13,29 @@ var CsvUploadForm = React.createClass({
     onNextStep: React.PropTypes.func.isRequired
   },
 
+  getInitialState: function() {
+    return {
+      csvData: '',
+      separator: DEFAULT_SEPARATOR
+    };
+  },
+
   handleNextStepClick: function() {
     this.props.onNextStep();
   },
 
 
-  handleSeparatorChange: function() {
+  handleSeparatorChange: function(e) {
+    this.setState({ separator: e.target.value });
+  },
 
+  handleCsvDataChange: function(e) {
+    this.setState({ csvData: e.target.value });
+  },
+
+  isValid: function() {
+    // TODO validation
+    return true;
   },
 
   render: function() {
@@ -30,21 +48,21 @@ var CsvUploadForm = React.createClass({
 
     return (
       <div className={containerClasses}>
-        <textarea placeholder="Paste founders CSV here..." className="row4 space-bottom1 col12"/>
+        <textarea placeholder="Paste founders CSV here..." className="row4 space-bottom1 col12" value={this.state.csvData} onChange={this.handleCsvDataChange} />
 
         <div className="space-bottom1 clearfix">
           <div className="option col4">
-            <input type="radio" name="separator" id="comma" value="comma" onChange={this.handleSeparatorChange} />
+            <input type="radio" name="separator" id="comma" value="comma" onChange={this.handleSeparatorChange} defaultChecked={DEFAULT_SEPARATOR === 'comma'} />
             <label className="inline" htmlFor="comma">Comma</label>
           </div>
 
           <div className="option col4">
-            <input type="radio" name="separator" id="semicolon" value="semicolon" onChange={this.handleSeparatorChange} />
+            <input type="radio" name="separator" id="semicolon" value="semicolon" onChange={this.handleSeparatorChange} defaultChecked={DEFAULT_SEPARATOR === 'semicolon'} />
             <label className="inline" htmlFor="semicolon">Semicolon</label>
           </div>
 
           <div className="option col4">
-            <input type="radio" name="separator" id="tab" value="tab" onChange={this.handleSeparatorChange} />
+            <input type="radio" name="separator" id="tab" value="tab" onChange={this.handleSeparatorChange} defaultChecked={DEFAULT_SEPARATOR === 'tab'} />
             <label className="inline" htmlFor="tab">Tab</label>
           </div>
         </div>
