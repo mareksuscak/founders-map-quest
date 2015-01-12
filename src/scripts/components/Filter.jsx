@@ -13,6 +13,7 @@ var Filter = React.createClass({
   },
 
   componentWillMount: function() {
+    this.defaultConfig = this.props.defaultConfig;
     this.setState(this.props.defaultConfig);
   },
 
@@ -38,9 +39,8 @@ var Filter = React.createClass({
 
   handleResetFilter: function(e) {
     e.preventDefault();
-    var newState = this.getInitialState();
-    this.setState(newState);
-    this.props.onChange(newState);
+    this.setState(this.defaultConfig);
+    this.props.onChange(this.defaultConfig);
   },
 
   render: function() {

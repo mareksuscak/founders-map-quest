@@ -39,24 +39,47 @@ var FilteredListView = React.createClass({
     });
   },
 
-  getFilteredFounders: function() {
-    var result = this.props.data;
-    
+  getSortFunc: function() {
     var lower = this.state.filter.sortOrder === 'asc' ? -1 : 1;
     var greater = this.state.filter.sortOrder === 'desc' ? -1 : 1;
 
-    if(this.state.filter.sortBy) {
-      result = result.sort(function(a,b) {
-        if (a[this.state.filter.sortBy] < b[this.state.filter.sortBy]) {
-          return lower;
-        }
+    return function(a,b) {
+      if (a[this.state.filter.sortBy] < b[this.state.filter.sortBy]) {
+        return lower;
+      }
 
-        if (a[this.state.filter.sortBy] > b[this.state.filter.sortBy]) {
-          return greater;
-        }
-        // a must be equal to b
-        return 0;
-      }.bind(this));
+      if (a[this.state.filter.sortBy] > b[this.state.filter.sortBy]) {
+        return greater;
+      }
+      // a must be equal to b
+      return 0;
+    }.bind(this);
+  },
+
+  getFilterFunc: function() {
+    var searchByProps = ['id', 'companyName', 'founders', 'city', 'country', 'postalCode', 'street'];
+    var searchTerm = this.state.filter.searchTerm.toString().toLowerCase();
+
+    return function(itm) {
+      var result = false;
+
+      searchByProps.forEach(function(prop) {
+        result = result || itm[prop].toString().toLowerCase().indexOf(searchTerm) >= 0;
+      });
+
+      return result;
+    };
+  },
+
+  getFilteredFounders: function() {
+    var result = this.props.data;
+
+    if(this.state.filter.searchTerm && this.state.filter.searchTerm.trim() !== '') {
+      result = result.filter(this.getFilterFunc());
+    }
+
+    if(this.state.filter.sortBy) {
+      result = result.sort(this.getSortFunc());
     }
 
     return result;
