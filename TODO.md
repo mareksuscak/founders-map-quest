@@ -1,6 +1,3 @@
-- Apply a CSS transition when opening any view from the navbar
-- Apply a CSS transition when switching between screens in views
+- Csv Mapping form
 - Field Mapping form
-- Registration status component that will show steps (Step 1 - Provide CSV, Step 2 - Specify Field Mapping)
-- Registration cancel button
 - Add custom styles for mobile layout
