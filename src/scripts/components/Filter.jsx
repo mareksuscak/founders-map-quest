@@ -21,6 +21,12 @@ var Filter = React.createClass({
     this.setState({ searchTerm: e.target.value });
   },
 
+  handleKeyDown: function(e) {
+    if(e.keyCode === 13) {
+      this.handleApplyFilter();
+    }
+  },
+
   handleSortByChange: function(e, values) {
     var sortBy = values.length > 0 ? values[0].value : this.props.defaultConfig.sortBy;
     this.setState({ sortBy: sortBy });
@@ -65,7 +71,7 @@ var Filter = React.createClass({
     return (
       <div className={containerClasses}>
         <div className="space-bottom1 clearfix">
-          <input type="text" className="search-term col12" value={this.state.searchTerm} onChange={this.handleSearchTermChange} placeholder="Search keyword..."/>
+          <input type="text" className="search-term col12" value={this.state.searchTerm} onChange={this.handleSearchTermChange} onKeyDown={this.handleKeyDown} placeholder="Search keyword..."/>
         </div>
         <div className="space-bottom1 contain clearfix">
           <ReactSelect className="sort-by col11" options={sortByOptions} value={this.state.sortBy} onChange={this.handleSortByChange} placeholder="Sort by..."/>
