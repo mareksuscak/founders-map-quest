@@ -24,7 +24,8 @@ module.exports = {
         photo: 'http://interviewsummary.com/wp-content/uploads/2013/07/larry-page-and-sergey-brin-of-google-620x400.jpg',
         homepage: 'http://google.com',
         latitude: '37.457674',
-        longitude: '-122.163452'
+        longitude: '-122.163452',
+        showOnMap: true
       },
 
       {
@@ -38,7 +39,8 @@ module.exports = {
         photo: 'http://i.dailymail.co.uk/i/pix/2013/02/08/article-2275512-172E13BB000005DC-732_634x505.jpg',
         homepage: 'http://apple.com',
         latitude: '37.3403188',
-        longitude: '-122.0581469'
+        longitude: '-122.0581469',
+        showOnMap: true
       },
 
       {
@@ -52,7 +54,8 @@ module.exports = {
         photo: 'http://postdefiance.com/wp-content/uploads/2013/02/bill-gates-microsoft-young.jpg',
         homepage: 'http://microsoft.com',
         latitude: '37.472189',
-        longitude: '-122.190191'
+        longitude: '-122.190191',
+        showOnMap: true
       }
     ]));
   },
@@ -78,6 +81,21 @@ module.exports = {
     });
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(rawFounders.concat(createdFounders)));
+  },
+
+  showOnMapToggle: function(id, newValue) {
+    var rawFounders = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    
+    var itemMeta = rawFounders.map(function(itm, idx) { 
+      return { id: itm.id, idx: idx };
+    }).filter(function(itm) { 
+      return itm.id === id; 
+    });
+
+    var idx = itemMeta[0].idx;
+
+    rawFounders[idx].showOnMap = !rawFounders[idx].showOnMap;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(rawFounders));
   }
 
 };

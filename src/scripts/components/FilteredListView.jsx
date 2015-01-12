@@ -9,7 +9,9 @@ var FilteredListView = React.createClass({
 
   propTypes: {
     isVisible: React.PropTypes.bool.isRequired,
-    data: React.PropTypes.array.isRequired
+    data: React.PropTypes.array.isRequired,
+    onItemClick: React.PropTypes.func.isRequired,
+    onShowOnMapToggle: React.PropTypes.func.isRequired
   },
 
   getInitialState: function() {
@@ -19,6 +21,10 @@ var FilteredListView = React.createClass({
 
       }
     };
+  },
+
+  handleShowOnMapToggle: function() {
+
   },
 
   onConfigureFilterClick: function(e) {
@@ -32,6 +38,13 @@ var FilteredListView = React.createClass({
     this.setState({
       activeScreen: 'list',
       filter: newFilter
+    });
+  },
+
+  getFilteredFounders: function() {
+    return this.props.data.filter(function() {
+
+      return true;
     });
   },
 
@@ -52,8 +65,7 @@ var FilteredListView = React.createClass({
       'pad2': true
     });
 
-    // TODO: apply filter function
-    var filteredData = this.props.data;
+    var filteredData = this.getFilteredFounders();
 
     return (
       <div className={containerClasses}>
@@ -66,7 +78,7 @@ var FilteredListView = React.createClass({
         </div>
 
         <Filter ref="filter" isVisible={this.state.activeScreen === 'filter'} onChange={this.onFilterChange}/>
-        <ItemList isVisible={this.state.activeScreen === 'list'} data={filteredData}/>
+        <ItemList isVisible={this.state.activeScreen === 'list'} data={filteredData} onItemClick={this.props.onItemClick} onShowOnMapToggle={this.props.onShowOnMapToggle}/>
       </div>
     );
     /*jshint ignore:end */

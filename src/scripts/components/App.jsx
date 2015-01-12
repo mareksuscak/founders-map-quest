@@ -27,7 +27,7 @@ var App = React.createClass({
       hashbang: true
     });
 
-    this.loadData();
+    this.reloadData();
 
     // Max height for all views
     this.refreshMaxHeight();
@@ -39,7 +39,7 @@ var App = React.createClass({
     window.removeEventListener('resize', this.refreshMaxHeight);
   },
 
-  loadData: function() {
+  reloadData: function() {
     var data = WebApiUtils.getAllFounders();
     this.setState({ data: data, isLoading: false });
   },
@@ -76,13 +76,22 @@ var App = React.createClass({
     }.bind(this);
   },
 
+  handleItemClick: function(id) {
+    this.refs.mapPane.focusFounderMarker(id);
+  },
+
+  handleShowOnMapToggle: function(id, newValue) {
+    WebApiUtils.showOnMapToggle(id, newValue);
+    this.reloadData();
+  },
+
   render: function() {
     /*jshint ignore:start */
     return (
       <div className="app">
-        <MapPane data={this.state.data}/>
+        <MapPane ref="mapPane" data={this.state.data}/>
         <NavBar activeView={this.state.activeView}/>
-        <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data}/>
+        <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data} onItemClick={this.handleItemClick} onShowOnMapToggle={this.handleShowOnMapToggle}/>
         <RegistrationView isVisible={this.state.activeView === 'registration'}/>
         <Loader isVisible={this.state.isLoading}/>
       </div>

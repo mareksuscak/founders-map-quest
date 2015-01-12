@@ -5,19 +5,19 @@ var React = require('react');
 var Item = React.createClass({
 
   propTypes: {
-    data: React.PropTypes.object.isRequired
+    data: React.PropTypes.object.isRequired,
+    onShowOnMapToggle: React.PropTypes.func.isRequired,
+    onClick: React.PropTypes.func.isRequired
   },
 
-  handleHideClick: function(e) {
+  handleShowOnMapClick: function(e) {
     e.preventDefault();
-  },
-
-  handleUnhideClick: function(e) {
-    e.preventDefault();
+    this.props.onShowOnMapToggle(this.props.data.id, !this.props.showOnMap);
   },
 
   handleLabelClick: function(e) {
     e.preventDefault();
+    this.props.onClick(this.props.data.id);
   },
 
   render: function() {
@@ -27,8 +27,11 @@ var Item = React.createClass({
         <h3 className="col12">
           <a href="#" onClick={this.handleLabelClick}>{this.props.data.companyName}</a>,&nbsp;
           <small>
-            <a href="#" title="Show on map" onClick={this.handleUnhideClick}><i className="fa fa-eye"/></a>
-            <a href="#" className="active" title="Hide on map" onClick={this.handleHideClick}><i className="fa fa-eye-slash"/></a>
+            {this.props.data.showOnMap && 
+              <a href="#" title="Hide on map" onClick={this.handleShowOnMapClick}><i className="fa fa-eye"/></a>}
+            
+            {!this.props.data.showOnMap && 
+            <a href="#" className="active" title="Show on map" onClick={this.handleShowOnMapClick}><i className="fa fa-eye-slash"/></a>}
           </small>
         </h3>
 

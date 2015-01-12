@@ -58,7 +58,9 @@ var MapPane = React.createClass({
     var markers = new L.MarkerClusterGroup({ animateAddingMarkers: true });
     var markersIndex = [];
 
-    founders.forEach(function(founder) {
+    founders.filter(function(founder) {
+      return founder.showOnMap;
+    }).forEach(function(founder) {
       var marker = L.marker(new L.LatLng(founder.latitude, founder.longitude), {
           icon: L.mapbox.marker.icon({'marker-symbol': 'rocket', 'marker-color': '3498DB'}),
           title: founder.companyName
