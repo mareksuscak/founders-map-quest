@@ -18,7 +18,9 @@ var FilteredListView = React.createClass({
     return {
       activeScreen: 'list',
       filter: {
-
+        searchTerm: '',
+        sortBy: 'id',
+        sortOrder: 'desc'
       }
     };
   },
@@ -73,7 +75,7 @@ var FilteredListView = React.createClass({
           </a>
         </div>
 
-        <Filter ref="filter" isVisible={this.state.activeScreen === 'filter'} onChange={this.onFilterChange}/>
+        <Filter defaultConfig={this.state.filter} isVisible={this.state.activeScreen === 'filter'} onChange={this.onFilterChange}/>
         <ItemList isVisible={this.state.activeScreen === 'list'} data={filteredData} onItemClick={this.props.onItemClick} onShowOnMapToggle={this.props.onShowOnMapToggle}/>
       </div>
     );

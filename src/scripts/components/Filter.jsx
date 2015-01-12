@@ -8,15 +8,12 @@ var Filter = React.createClass({
 
   propTypes: {
     isVisible: React.PropTypes.bool.isRequired,
+    defaultConfig: React.PropTypes.object.isRequired,
     onChange: React.PropTypes.func.isRequired
   },
 
-  getInitialState: function() {
-    return {
-      searchTerm: '',
-      sortBy: '',
-      sortOrder: 'desc'
-    };
+  componentWillMount: function() {
+    this.setState(this.props.defaultConfig);
   },
 
   handleSearchTermChange: function(e) {
