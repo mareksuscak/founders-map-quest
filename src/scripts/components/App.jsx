@@ -81,6 +81,7 @@ var App = React.createClass({
   },
 
   handleShowOnMapToggle: function(id, newValue) {
+    this.setState({ isLoading: true });
     WebApiUtils.showOnMapToggle(id, newValue);
     this.reloadData();
   },
