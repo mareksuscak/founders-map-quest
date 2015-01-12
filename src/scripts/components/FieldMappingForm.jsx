@@ -12,6 +12,12 @@ var FieldMappingForm = React.createClass({
     onCancel: React.PropTypes.func.isRequired
   },
 
+  getInitialState: function() {
+    return {
+      fieldMapping: {}
+    }
+  },
+
   handleFinishClick: function() {
     // TODO: validate and create founders based on mapping
     this.props.onFinish();
@@ -35,6 +41,10 @@ var FieldMappingForm = React.createClass({
       'screen': true,
       'mapping-form': true,
       'active': this.props.isVisible
+    });
+
+    var options = this.props.csvFields.map(function(field) {
+      return { value: '', label: '' };
     });
 
     return (

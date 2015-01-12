@@ -22,7 +22,10 @@ var CsvUploadForm = React.createClass({
 
   handleNextStepClick: function() {
     // TODO: validate and parse CSV data into object and pass the object down the road
-    this.props.onNextStep();
+    this.props.onNextStep({
+      fields: [],
+      data: []
+    });
     this.setState(this.getInitialState());
   },
 
