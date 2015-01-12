@@ -20,6 +20,11 @@ var Filter = React.createClass({
     this.setState({ searchTerm: e.target.value });
   },
 
+  handleSortByChange: function(e, values) {
+    var sortBy = values.length > 0 ? values[0].value : this.props.defaultConfig.sortBy;
+    this.setState({ sortBy: sortBy });
+  },
+
   handleToggleSortOrder: function(e) {
     e.preventDefault();
     this.setState({
@@ -47,13 +52,23 @@ var Filter = React.createClass({
       'active': this.props.isVisible
     });
 
+    var sortByOptions = [
+      { value: 'id', label: 'Date Added' },
+      { value: 'companyName', label: 'Company Name' },
+      { value: 'founders', label: 'Founders' },
+      { value: 'city', label: 'City' },
+      { value: 'country', label: 'Country' },
+      { value: 'postalCode', label: 'Postal Code' },
+      { value: 'street', label: 'Street' }
+    ];
+
     return (
       <div className={containerClasses}>
         <div className="space-bottom1 clearfix">
           <input type="text" className="search-term col12" value={this.state.searchTerm} onChange={this.handleSearchTermChange} placeholder="Search keyword..."/>
         </div>
         <div className="space-bottom1 contain clearfix">
-          <ReactSelect className="sort-by col11" placeholder="Sort by..."/>
+          <ReactSelect className="sort-by col11" options={sortByOptions} value={this.state.sortBy} onChange={this.handleSortByChange} placeholder="Sort by..."/>
           <a href="#" className="sort-order row1 col1" onClick={this.handleToggleSortOrder}>
             { this.state.sortOrder === 'asc' &&
             <i className="fa fa-sort-alpha-asc fa-fw"/>}

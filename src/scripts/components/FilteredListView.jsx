@@ -40,10 +40,26 @@ var FilteredListView = React.createClass({
   },
 
   getFilteredFounders: function() {
-    return this.props.data.filter(function() {
+    var result = this.props.data;
+    
+    var lower = this.state.filter.sortOrder === 'asc' ? -1 : 1;
+    var greater = this.state.filter.sortOrder === 'desc' ? -1 : 1;
 
-      return true;
-    });
+    if(this.state.filter.sortBy) {
+      result = result.sort(function(a,b) {
+        if (a[this.state.filter.sortBy] < b[this.state.filter.sortBy]) {
+          return lower;
+        }
+
+        if (a[this.state.filter.sortBy] > b[this.state.filter.sortBy]) {
+          return greater;
+        }
+        // a must be equal to b
+        return 0;
+      }.bind(this));
+    }
+
+    return result;
   },
 
   render: function() {
