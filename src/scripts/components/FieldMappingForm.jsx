@@ -8,15 +8,25 @@ var FieldMappingForm = React.createClass({
 
   propTypes: {
     isVisible: React.PropTypes.bool.isRequired,
-    onNextStep: React.PropTypes.func.isRequired
+    onFinish: React.PropTypes.func.isRequired,
+    onCancel: React.PropTypes.func.isRequired
   },
 
   handleFinishClick: function() {
-    this.props.onNextStep();
+    // TODO: validate and create founders based on mapping
+    this.props.onFinish();
+    this.setState(this.getInitialState());
   },
 
   handleCancelClick: function(e) {
     e.preventDefault();
+    this.props.onCancel();
+    this.setState(this.getInitialState());
+  },
+
+  isValid: function() {
+    // TODO validation
+    return true;
   },
 
   render: function() {

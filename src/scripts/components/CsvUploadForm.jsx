@@ -15,13 +15,15 @@ var CsvUploadForm = React.createClass({
 
   getInitialState: function() {
     return {
-      csvData: '',
+      rawCsvData: '',
       separator: DEFAULT_SEPARATOR
     };
   },
 
   handleNextStepClick: function() {
+    // TODO: validate and parse CSV data into object and pass the object down the road
     this.props.onNextStep();
+    this.setState(this.getInitialState());
   },
 
 
@@ -29,8 +31,8 @@ var CsvUploadForm = React.createClass({
     this.setState({ separator: e.target.value });
   },
 
-  handleCsvDataChange: function(e) {
-    this.setState({ csvData: e.target.value });
+  handleRawCsvDataChange: function(e) {
+    this.setState({ rawCsvData: e.target.value });
   },
 
   isValid: function() {
@@ -48,7 +50,7 @@ var CsvUploadForm = React.createClass({
 
     return (
       <div className={containerClasses}>
-        <textarea placeholder="Paste founders CSV here..." className="row4 space-bottom1 col12" value={this.state.csvData} onChange={this.handleCsvDataChange} />
+        <textarea placeholder="Paste founders CSV here..." className="row4 space-bottom1 col12" value={this.state.rawCsvData} onChange={this.handleRawCsvDataChange} />
 
         <div className="space-bottom1 clearfix">
           <div className="option col4">

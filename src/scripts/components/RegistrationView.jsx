@@ -13,20 +13,21 @@ var RegistrationView = React.createClass({
 
   getInitialState: function() {
     return {
-      activeForm: 'upload'
+      activeForm: 'upload',
+      
     };
   },
 
   handleUploadNextStep: function() {
-    this.setState({
-      activeForm: 'mapping'
-    });
+    this.setState({ activeForm: 'mapping' });
   },
 
-  handleMappingNextStep: function() {
-    this.setState({
-      activeForm: 'upload'
-    });
+  handleFinish: function() {
+    this.setState({ activeForm: 'upload' });
+  },
+
+  handleCancel: function() {
+    this.setState({ activeForm: 'upload' });
   },
 
   render: function() {
@@ -43,7 +44,7 @@ var RegistrationView = React.createClass({
     return (
       <div className={classes}>
         <CsvUploadForm isVisible={this.state.activeForm === 'upload'} onNextStep={this.handleUploadNextStep}/>
-        <FieldMappingForm isVisible={this.state.activeForm === 'mapping'} onNextStep={this.handleMappingNextStep}/>
+        <FieldMappingForm isVisible={this.state.activeForm === 'mapping'} onFinish={this.handleFinish} onCancel={this.handleCancel}/>
       </div>
     );
     /*jshint ignore:end */
