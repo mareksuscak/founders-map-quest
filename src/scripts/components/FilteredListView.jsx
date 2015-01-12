@@ -23,10 +23,6 @@ var FilteredListView = React.createClass({
     };
   },
 
-  handleShowOnMapToggle: function() {
-
-  },
-
   onConfigureFilterClick: function(e) {
     e.preventDefault();
     this.setState({
