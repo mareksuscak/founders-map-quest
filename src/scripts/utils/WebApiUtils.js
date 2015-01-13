@@ -11,6 +11,7 @@ var STORAGE_KEY = 'founders';
 
 module.exports = {
 
+  // This one was used during the development only
   initialize: function() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify([
       {
@@ -73,23 +74,29 @@ module.exports = {
 
   publishFounders: function(founders) {
     // simulate writing to a database
-    var rawFounders = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    var rawFounders = this.getAllFounders();
     var createdFounders = [];
 
+    var id = rawFounders.length+1;
+
     founders.forEach(function(founder) {
+      founder.showOnMap = true;
+      founder.id = id;
+
       createdFounders.push(founder);
+      id++;
     });
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(rawFounders.concat(createdFounders)));
   },
 
   showOnMapToggle: function(id, newValue) {
-    var rawFounders = JSON.parse(localStorage.getItem(STORAGE_KEY));
-    
-    var itemMeta = rawFounders.map(function(itm, idx) { 
+    var rawFounders = this.getAllFounders();
+
+    var itemMeta = rawFounders.map(function(itm, idx) {
       return { id: itm.id, idx: idx };
-    }).filter(function(itm) { 
-      return itm.id === id; 
+    }).filter(function(itm) {
+      return itm.id === id;
     });
 
     var idx = itemMeta[0].idx;

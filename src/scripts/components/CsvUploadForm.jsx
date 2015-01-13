@@ -2,6 +2,7 @@
 
 var React = require('react'),
     cx = require('react/lib/cx'), // jshint ignore:line
+    Alerts = require('./Alerts.jsx'), // jshint ignore:line
     ReactSelect = require('react-select'); // jshint ignore:line
 
 var DEFAULT_SEPARATOR = 'comma';
@@ -111,14 +112,8 @@ var CsvUploadForm = React.createClass({
 
     return (
       <div className={containerClasses}>
-        { this.state.errors.length > 0 &&
-        <div className="space-bottom1 alert alert-error">
-          <ul>
-            {this.state.errors.map(function(error) {
-              return <li>{error}</li>;
-            })}
-          </ul>
-        </div>}
+        {this.state.errors.length > 0 &&
+        <Alerts className="space-bottom1 alert alert-error" data={this.state.errors}/>}
 
         <textarea placeholder="Paste founders CSV here..." className="row4 space-bottom1 col12" value={this.state.rawCsvData} onChange={this.handleRawCsvDataChange} />
 
