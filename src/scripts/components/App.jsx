@@ -86,6 +86,10 @@ var App = React.createClass({
     this.reloadData();
   },
 
+  handleRegistrationFinished: function() {
+    this.reloadData();
+  },
+
   render: function() {
     /*jshint ignore:start */
     return (
@@ -93,7 +97,7 @@ var App = React.createClass({
         <MapPane ref="mapPane" data={this.state.data}/>
         <NavBar activeView={this.state.activeView}/>
         <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data} onItemClick={this.handleItemClick} onShowOnMapToggle={this.handleShowOnMapToggle}/>
-        <RegistrationView isVisible={this.state.activeView === 'registration'}/>
+        <RegistrationView isVisible={this.state.activeView === 'registration'} onRegistrationFinished={this.handleRegistrationFinished}/>
         <Loader isVisible={this.state.isLoading}/>
       </div>
     );

@@ -8,14 +8,15 @@ var React = require('react'),
 var RegistrationView = React.createClass({
 
   propTypes: {
-    isVisible: React.PropTypes.bool.isRequired
+    isVisible: React.PropTypes.bool.isRequired,
+    onRegistrationFinished: React.PropTypes.func.isRequired
   },
 
   getInitialState: function() {
     return {
       activeForm: 'upload',
       csv: {
-        fields: [],
+        colHeaders: [],
         data: []
       }
     };
@@ -26,12 +27,12 @@ var RegistrationView = React.createClass({
   },
 
   handleFinish: function(founders) {
-    // TODO: create founders
-    this.setState({ activeForm: 'upload' });
+    this.setState(this.getInitialState());
+    this.props.onRegistrationFinished();
   },
 
   handleCancel: function() {
-    this.setState({ activeForm: 'upload' });
+    this.setState(this.getInitialState());
   },
 
   render: function() {
@@ -48,7 +49,7 @@ var RegistrationView = React.createClass({
     return (
       <div className={classes}>
         <CsvUploadForm isVisible={this.state.activeForm === 'upload'} onNextStep={this.handleUploadNextStep}/>
-        <FieldMappingForm csvFields={this.state.csv.fields} isVisible={this.state.activeForm === 'mapping'} onFinish={this.handleFinish} onCancel={this.handleCancel}/>
+        <FieldMappingForm csvColHeaders={this.state.csv.colHeaders} isVisible={this.state.activeForm === 'mapping'} onFinish={this.handleFinish} onCancel={this.handleCancel}/>
       </div>
     );
     /*jshint ignore:end */

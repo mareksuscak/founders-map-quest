@@ -16,19 +16,55 @@ var CsvUploadForm = React.createClass({
   getInitialState: function() {
     return {
       rawCsvData: '',
-      separator: DEFAULT_SEPARATOR
+      separator: DEFAULT_SEPARATOR,
+      errors: []
+    };
+  },
+
+  resolveSeparator: function() {
+    if('semicolon' === this.state.separator) {
+      return ';';
+    }
+
+    if('tab' === this.state.separator) {
+      return '\t';
+    }
+
+    return ',';
+  },
+
+  parseCsvField: function(field) {
+    return field.trim();
+  },
+
+  parseCsvRow: function(separator) {
+    return function(row) {
+      return row
+        .split(separator) // split to fields
+        .map(this.parseCsvField); // and map them to trim each field
+    }.bind(this);
+  },
+
+  parseRawCsv: function() {
+    var separator = this.resolveSeparator();
+    var result = this.state.rawCsvData
+      .split('\n') // split to rows
+      .map(this.parseCsvRow(separator)); // and map each row to array of columns
+
+    return {
+      colHeaders: [].concat.apply([], result.slice(0,1)), // flatten
+      data: result.slice(1)
     };
   },
 
   handleNextStepClick: function() {
-    // TODO: validate and parse CSV data into object and pass the object down the road
-    this.props.onNextStep({
-      fields: [],
-      data: []
-    });
-    this.setState(this.getInitialState());
-  },
+    var csv = this.parseRawCsv();
 
+    if(this.isValid(csv)) {
+      this.props.onNextStep(csv);
+      this.setState(this.getInitialState());
+    }
+  },
 
   handleSeparatorChange: function(e) {
     this.setState({ separator: e.target.value });
@@ -38,9 +74,31 @@ var CsvUploadForm = React.createClass({
     this.setState({ rawCsvData: e.target.value });
   },
 
-  isValid: function() {
-    // TODO validation
-    return true;
+  isValid: function(csv) {
+    this.setState({ errors: [] }); // clean errors
+
+    var isValid = true;
+    var errors = [];
+
+    // check the number of data rows
+    if(csv.data.length === 0) {
+      errors.push('Csv has no data rows.');
+      isValid = false;
+    }
+
+    // compare number of colHeaders and field in each row
+    var colsCount = csv.colHeaders.length;
+    for(var i=0; i < csv.data.length; i++) {
+      if(csv.data[i].length !== colsCount) {
+        errors.push('Csv is not valid.');
+        isValid = false;
+        break;
+      }
+    }
+
+    this.setState({ errors: errors });
+
+    return isValid;
   },
 
   render: function() {
@@ -53,6 +111,15 @@ var CsvUploadForm = React.createClass({
 
     return (
       <div className={containerClasses}>
+        { this.state.errors.length > 0 &&
+        <div className="space-bottom1 alert alert-error">
+          <ul>
+            {this.state.errors.map(function(error) {
+              return <li>{error}</li>;
+            })}
+          </ul>
+        </div>}
+
         <textarea placeholder="Paste founders CSV here..." className="row4 space-bottom1 col12" value={this.state.rawCsvData} onChange={this.handleRawCsvDataChange} />
 
         <div className="space-bottom1 clearfix">

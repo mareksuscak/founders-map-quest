@@ -43,7 +43,7 @@ var FieldMappingForm = React.createClass({
       'active': this.props.isVisible
     });
 
-    var options = this.props.csvFields.map(function(field) {
+    var options = this.props.csvColHeaders.map(function(field) {
       return { value: '', label: '' };
     });
 
