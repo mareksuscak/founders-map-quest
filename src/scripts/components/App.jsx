@@ -20,6 +20,18 @@ var App = React.createClass({
     };
   },
 
+  getBasePath: function() {
+    var basepath = window.location.pathname;
+
+    if(basepath.slice(-1) === '/') {
+      basepath = basepath.slice(0, -1);
+    }
+
+    console.log('BasePath: ', basepath);
+
+    return basepath;
+  },
+
   componentDidMount: function() {
     this.registerRoutes();
     this.reloadData();
@@ -27,6 +39,9 @@ var App = React.createClass({
     // Max height for all views
     this.refreshMaxHeight();
     window.addEventListener('resize', this.refreshMaxHeight);
+
+    // set the base path
+    page.base(this.getBasePath());
 
     page.start({
       // We don't support server-side routes so always add a hashbang
