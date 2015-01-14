@@ -31,6 +31,20 @@ Following command builds scripts and styles with source maps, runs browser-sync 
 npm start
 ```
 
+## Technology Stack
+
+- Node.js
+- Bower
+- Gulp
+- Browserify
+- BrowserSync
+- Stylus (with Autoprefixer)
+- React.js
+- Mapbox.js
+- Leaflet.MarkerCluster
+- Page.js 
+- FontAwesome
+
 ## License
 
 The MIT License (MIT)
