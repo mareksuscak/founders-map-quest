@@ -30,7 +30,7 @@ var RegistrationView = React.createClass({
   },
 
   handleFinish: function(founders) {
-    var nextState = assign(this.getInitialState(), { successMessages: ['Founders have been published.'] });
+    var nextState = assign(this.getInitialState(), { successMessages: [founders.length + ' founder(s) have been published.'] });
     this.setState(nextState);
     this.props.onRegistrationFinished();
 

@@ -31,7 +31,7 @@ var FieldMappingForm = React.createClass({
         longitude: null
       },
       errors: []
-    }
+    };
   },
 
   createFounderFromRow: function(row) {
@@ -46,7 +46,7 @@ var FieldMappingForm = React.createClass({
       homepage: row[this.state.fieldMapping.homepage],
       latitude: row[this.state.fieldMapping.latitude],
       longitude: row[this.state.fieldMapping.longitude]
-    }
+    };
   },
 
   extractFounderObjects: function() {
@@ -57,7 +57,7 @@ var FieldMappingForm = React.createClass({
     if(this.isValid()) {
       var founders = this.extractFounderObjects();
       WebApiUtils.publishFounders(founders);
-      this.props.onFinish();
+      this.props.onFinish(founders);
       this.setState(this.getInitialState());
     }
   },

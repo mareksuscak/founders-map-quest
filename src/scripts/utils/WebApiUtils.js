@@ -90,7 +90,7 @@ module.exports = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(rawFounders.concat(createdFounders)));
   },
 
-  showOnMapToggle: function(id, newValue) {
+  showOnMapToggle: function(id) {
     var rawFounders = this.getAllFounders();
 
     var itemMeta = rawFounders.map(function(itm, idx) {

@@ -8,7 +8,7 @@ var Alerts = React.createClass({
   getDefaultProps: function() {
     return {
       data: []
-    }
+    };
   },
 
   render: function() {
