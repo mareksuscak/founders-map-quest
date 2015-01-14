@@ -16,7 +16,7 @@ var App = React.createClass({
       activeView: '',
       isLoading: true,
       data: [],
-      focusedMarkerId: -1
+      focusedMarkerId: null
     };
   },
 
@@ -55,8 +55,13 @@ var App = React.createClass({
 
   registerRoutes: function() {
     var nullRoute = this.viewChangeRoute('');
-    var searchRoute = this.viewChangeRoute('search');
-    var registrationRoute = this.viewChangeRoute('registration');
+    var searchRoute = this.viewChangeRoute('search', function() {
+      this.setState({ focusedMarkerId: null }); // ugly hack to reset marker focus
+    }.bind(this));
+
+    var registrationRoute = this.viewChangeRoute('registration', function() {
+      this.setState({ focusedMarkerId: null }); // ugly hack to reset marker focus
+    }.bind(this));
 
     var focusFounderRoute = this.viewChangeRoute('', function(ctx) {
       this.setState({ focusedMarkerId: parseInt(ctx.params.id) });
