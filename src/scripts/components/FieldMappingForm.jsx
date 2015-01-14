@@ -90,6 +90,9 @@ var FieldMappingForm = React.createClass({
         return false;
       }
     }
+
+    // NOTE: here we could have validated correct field value types
+
     return true;
   },
 
