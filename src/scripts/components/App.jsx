@@ -15,23 +15,23 @@ var App = React.createClass({
     return {
       activeView: '',
       isLoading: true,
-      data: []
+      data: [],
+      focusedMarkerId: -1
     };
   },
 
   componentDidMount: function() {
     this.registerRoutes();
-
-    page.start({
-      // We don't support server-side routes so always add a hashbang
-      hashbang: true
-    });
-
     this.reloadData();
 
     // Max height for all views
     this.refreshMaxHeight();
     window.addEventListener('resize', this.refreshMaxHeight);
+
+    page.start({
+      // We don't support server-side routes so always add a hashbang
+      hashbang: true
+    });
   },
 
   componentWillUnmount: function() {
@@ -58,9 +58,22 @@ var App = React.createClass({
     var searchRoute = this.viewChangeRoute('search');
     var registrationRoute = this.viewChangeRoute('registration');
 
+    var focusFounderRoute = this.viewChangeRoute('', function(ctx) {
+      this.setState({ focusedMarkerId: parseInt(ctx.params.id) });
+    }.bind(this));
+
+    var toggleFounderVisibilityRoute = function(ctx) {
+      this.setState({ isLoading: true });
+      WebApiUtils.showOnMapToggle(parseInt(ctx.params.id));
+      this.reloadData();
+      page.redirect('/search');
+    }.bind(this);
+
     page('/', nullRoute);
     page('/search', searchRoute);
     page('/registration', registrationRoute);
+    page('/founder/:id/focus', focusFounderRoute);
+    page('/founder/:id/tgl-visibility', toggleFounderVisibilityRoute);
     page('*', nullRoute);
   },
 
@@ -76,16 +89,6 @@ var App = React.createClass({
     }.bind(this);
   },
 
-  handleItemClick: function(id) {
-    this.refs.mapPane.focusFounderMarker(id);
-  },
-
-  handleShowOnMapToggle: function(id, newValue) {
-    this.setState({ isLoading: true });
-    WebApiUtils.showOnMapToggle(id, newValue);
-    this.reloadData();
-  },
-
   handleRegistrationFinished: function() {
     this.reloadData();
   },
@@ -94,9 +97,9 @@ var App = React.createClass({
     /*jshint ignore:start */
     return (
       <div className="app">
-        <MapPane ref="mapPane" data={this.state.data}/>
+        <MapPane focusedMarkerId={this.state.focusedMarkerId} data={this.state.data}/>
         <NavBar activeView={this.state.activeView}/>
-        <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data} onItemClick={this.handleItemClick} onShowOnMapToggle={this.handleShowOnMapToggle}/>
+        <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data} onShowOnMapToggle={this.handleShowOnMapToggle}/>
         <RegistrationView isVisible={this.state.activeView === 'registration'} onRegistrationFinished={this.handleRegistrationFinished}/>
         <Loader isVisible={this.state.isLoading}/>
       </div>

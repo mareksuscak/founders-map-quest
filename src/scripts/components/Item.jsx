@@ -1,23 +1,22 @@
 'use strict';
 
-var React = require('react');
+var React = require('react'),
+    page = require('page');
 
 var Item = React.createClass({
 
   propTypes: {
-    data: React.PropTypes.object.isRequired,
-    onShowOnMapToggle: React.PropTypes.func.isRequired,
-    onClick: React.PropTypes.func.isRequired
+    data: React.PropTypes.object.isRequired
   },
 
   handleShowOnMapClick: function(e) {
     e.preventDefault();
-    this.props.onShowOnMapToggle(this.props.data.id, !this.props.showOnMap);
+    page('/founder/' + this.props.data.id.toString() + '/tgl-visibility');
   },
 
   handleLabelClick: function(e) {
     e.preventDefault();
-    this.props.onClick(this.props.data.id);
+    page('/founder/' + this.props.data.id.toString() + '/focus');
   },
 
   render: function() {

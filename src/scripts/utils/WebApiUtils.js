@@ -99,6 +99,10 @@ module.exports = {
       return itm.id === id;
     });
 
+    if(itemMeta.length === 0) {
+      return;
+    }
+
     var idx = itemMeta[0].idx;
 
     rawFounders[idx].showOnMap = !rawFounders[idx].showOnMap;

@@ -9,12 +9,13 @@ require('leaflet.markercluster');
 var MapPane = React.createClass({
 
   propTypes: {
-    data: React.PropTypes.array.isRequired
+    data: React.PropTypes.array.isRequired,
+    focusedMarkerId: React.PropTypes.any
   },
 
   componentDidMount: function() {
     this.bindMap();
-    this.showFounders(this.props.data);
+    this.showFounders(this.props.data, this.props.focusedMarkerId);
   },
 
   componentWillUnmount: function() {
@@ -23,7 +24,7 @@ var MapPane = React.createClass({
 
   componentWillReceiveProps: function(nextProps) {
     this.clearFounders();
-    this.showFounders(nextProps.data);
+    this.showFounders(nextProps.data, nextProps.focusedMarkerId);
   },
 
   shouldComponentUpdate: function() {
@@ -54,7 +55,7 @@ var MapPane = React.createClass({
     this._markersIndex = null;
   },
 
-  showFounders: function(founders) {
+  showFounders: function(founders, focusedMarkerId) {
     var markers = new L.MarkerClusterGroup({ animateAddingMarkers: true });
     var markersIndex = [];
 
@@ -81,6 +82,11 @@ var MapPane = React.createClass({
     this._markers = markers;
     this._markersIndex = markersIndex;
     this._map.addLayer(markers);
+
+    // focus if needed
+    if(focusedMarkerId) {
+      this.focusFounderMarker(focusedMarkerId);
+    }
   },
 
   focusFounderMarker: function(id) {

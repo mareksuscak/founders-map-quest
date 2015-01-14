@@ -9,9 +9,7 @@ var FilteredListView = React.createClass({
 
   propTypes: {
     isVisible: React.PropTypes.bool.isRequired,
-    data: React.PropTypes.array.isRequired,
-    onItemClick: React.PropTypes.func.isRequired,
-    onShowOnMapToggle: React.PropTypes.func.isRequired
+    data: React.PropTypes.array.isRequired
   },
 
   getInitialState: function() {
@@ -115,7 +113,7 @@ var FilteredListView = React.createClass({
         </div>
 
         <Filter defaultConfig={this.state.filter} isVisible={this.state.activeScreen === 'filter'} onChange={this.onFilterChange}/>
-        <ItemList isVisible={this.state.activeScreen === 'list'} data={filteredData} onItemClick={this.props.onItemClick} onShowOnMapToggle={this.props.onShowOnMapToggle}/>
+        <ItemList isVisible={this.state.activeScreen === 'list'} data={filteredData}/>
       </div>
     );
     /*jshint ignore:end */
