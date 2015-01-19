@@ -91,7 +91,27 @@ var FieldMappingForm = React.createClass({
       }
     }
 
-    // NOTE: here we could have validated correct field value types
+    // and perform very simple validation of the rows' data
+    var errors = [];
+    this.props.csv.data.forEach(function(row, idx) {
+      var order = idx+1;
+      if(isNaN(parseFloat(row[this.state.fieldMapping.latitude]))) {
+        errors.push(order.toString() + '. row\'s latitude column value is not valid.');
+      }
+
+      if(isNaN(parseFloat(row[this.state.fieldMapping.longitude]))) {
+        errors.push(order.toString() + '. row\'s longitude column value is not valid.');
+      }
+
+      if(row[this.state.fieldMapping.companyName].length <= 0) {
+        errors.push(order.toString() + '. row\'s company name column value must be provided.');
+      }
+    }.bind(this));
+
+    if(errors.length > 0) {
+      this.setState({ errors: errors });
+      return false;
+    }
 
     return true;
   },
