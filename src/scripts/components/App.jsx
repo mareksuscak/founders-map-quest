@@ -119,7 +119,7 @@ var App = React.createClass({
       <div className="app">
         <MapPane focusedMarkerId={this.state.focusedMarkerId} data={this.state.data}/>
         <NavBar activeView={this.state.activeView}/>
-        <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data} onShowOnMapToggle={this.handleShowOnMapToggle}/>
+        <FilteredListView isVisible={this.state.activeView === 'search'} data={this.state.data}/>
         <RegistrationView isVisible={this.state.activeView === 'registration'} onRegistrationFinished={this.handleRegistrationFinished}/>
         <Loader isVisible={this.state.isLoading}/>
       </div>
